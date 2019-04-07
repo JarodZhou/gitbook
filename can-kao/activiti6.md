@@ -28,7 +28,7 @@ Activiti开发可以使用您选择的IDE完成。 如果您想使用Activiti De
 
 ### 1.6. 实验功能
 
- 标有**[实验] **的章节不应被视为稳定。
+ 标有**[实验]**的章节不应被视为稳定。
 
 包名中包含`.impl`的所有类都是内部实现类，不能被认为是稳定的。 但是，如果用户指南提到这些类作为配置值，则它们受支持并且可以被认为是稳定的。  
 
@@ -42,7 +42,7 @@ Activiti开发可以使用您选择的IDE完成。 如果您想使用Activiti De
 
  从[Activiti网站]（http://www.activiti.org/）下载Activiti UI WAR文件后，请按照以下步骤使用默认设置运行演示设置。 你需要一个有用的[Java运行时]（http://java.sun.com/javase/downloads/index.jsp）和[Apache Tomcat]（http://tomcat.apache.org/download-80.cgi） ）安装（实际上，任何Web容器都可以工作，因为我们只依赖于servlet功能。但我们主要测试Tomcat）。
 
- \- 将下载的activiti-app.war复制到Tomcat的webapps目录。
+- 将下载的activiti-app.war复制到Tomcat的webapps目录。
  \- 通过在Tomcat的bin文件夹中运行startup.bat或startup.sh脚本来启动Tomcat
  \- 启动Tomcat时打开浏览器并转到<http：// localhost：8080 / activiti-app>。 使用管理员和密码测试登录。
 
@@ -146,7 +146,7 @@ ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine()
 </beans>
 ```
 
-请注意，配置XML实际上是一个Spring配置。 **这并不意味着Activiti只能在Spring环境中使用！**我们只是在内部利用Spring的解析和依赖注入功能来构建引擎。
+请注意，配置XML实际上是一个Spring配置。**这并不意味着Activiti只能在Spring环境中使用！**我们只是在内部利用Spring的解析和依赖注入功能来构建引擎。
 
 ProcessEngineConfiguration对象也可以使用配置文件以编程方式创建。 也可以使用不同的bean id（例如，参见第3行）。
 
@@ -184,26 +184,26 @@ ProcessEngine processEngine = ProcessEngineConfiguration.createStandaloneInMemPr
 
 然后使用该bean构造`ProcessEngine`。有多个类可用于定义`processEngineConfiguration`。这些类表示不同的环境，并相应地设置默认值。选择匹配（最多）环境的类是最佳实践，以最小化配置引擎所需的属性数。目前可以使用以下类（将来的版本中将会有更多类）：
 
- -  ** org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration **：流程引擎以独立方式使用。 Activiti将负责交易。默认情况下，仅在引擎引导时检查数据库（如果没有Activiti架构或架构版本不正确，则抛出异常）。
- -  ** org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration **：这是一个用于单元测试目的的便利类。 Activiti将负责交易。默认情况下使用H2内存数据库。引擎启动和关闭时将创建和删除数据库。使用此功能时，可能不需要其他配置（例如，使用作业执行程序或邮件功能时除外）。
- -  ** org.activiti.spring.SpringProcessEngineConfiguration **：在Spring环境中使用流程引擎时使用。有关详细信息，请参阅[Spring集成部分]（https://www.activiti.org/userguide/#springintegration）。
- -  ** org.activiti.engine.impl.cfg.JtaProcessEngineConfiguration **：在引擎以独立模式运行时使用JTA事务。
+ - **org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration**：流程引擎以独立方式使用。 Activiti将负责交易。默认情况下，仅在引擎引导时检查数据库（如果没有Activiti架构或架构版本不正确，则抛出异常）。
+ - **org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration**：这是一个用于单元测试目的的便利类。 Activiti将负责交易。默认情况下使用H2内存数据库。引擎启动和关闭时将创建和删除数据库。使用此功能时，可能不需要其他配置（例如，使用作业执行程序或邮件功能时除外）。
+ - **org.activiti.spring.SpringProcessEngineConfiguration**：在Spring环境中使用流程引擎时使用。有关详细信息，请参阅[Spring集成部分]（https://www.activiti.org/userguide/#springintegration）。
+ - **org.activiti.engine.impl.cfg.JtaProcessEngineConfiguration**：在引擎以独立模式运行时使用JTA事务。
 
 ### 3.3. Database configuration
 
 有两种方法可以配置Activiti引擎将使用的数据库。第一个选项是定义数据库的JDBC属性：
 
- -  ** jdbcUrl **：数据库的JDBC URL。
- -  ** jdbcDriver **：为特定数据库类型实现驱动程序。
- -  ** jdbcUsername **：用于连接数据库的用户名。
- -  ** jdbcPassword **：连接数据库的密码。
+ - **jdbcUrl**：数据库的JDBC URL。
+ - **jdbcDriver**：为特定数据库类型实现驱动程序。
+ - **jdbcUsername**：用于连接数据库的用户名。
+ - **jdbcPassword**：连接数据库的密码。
 
 基于提供的JDBC属性构造的数据源将具有默认的[MyBatis]（http://www.mybatis.org/）连接池设置。可以选择设置以下属性来调整该连接池（取自MyBatis文档）：
 
- -  ** jdbcMaxActiveConnections **：任何时候连接池最多可以包含的活动连接数。默认值为10。
- -  ** jdbcMaxIdleConnections **：任何时候连接池最多可以包含的空闲连接数。
- -  ** jdbcMaxCheckoutTime **：在强制返回连接池之前，可以*从连接池中检出连接的时间量（以毫秒为单位）。默认值为20000（20秒）。
- -  ** jdbcMaxWaitTime **：这是一个低级别设置，它使池有机会打印日志状态并在异常长时间内重新尝试获取连接（以避免在以下情况下无声地失败）池配置错误）默认值为20000（20秒）。
+ - **jdbcMaxActiveConnections**：任何时候连接池最多可以包含的活动连接数。默认值为10。
+ - **jdbcMaxIdleConnections**：任何时候连接池最多可以包含的空闲连接数。
+ - **jdbcMaxCheckoutTime**：在强制返回连接池之前，可以*从连接池中检出连接的时间量（以毫秒为单位）。默认值为20000（20秒）。
+ - **jdbcMaxWaitTime**：这是一个低级别设置，它使池有机会打印日志状态并在异常长时间内重新尝试获取连接（以避免在以下情况下无声地失败）池配置错误）默认值为20000（20秒）。
 
 示例数据库配置：
 
@@ -234,8 +234,8 @@ ProcessEngine processEngine = ProcessEngineConfiguration.createStandaloneInMemPr
 
 无论您使用的是JDBC还是数据源方法，都可以设置以下属性：
 
- -  ** databaseType **：通常不需要指定此属性，因为它是从数据库连接元数据中自动分析的。只应在自动检测失败的情况下指定。可能的值：{h2，mysql，oracle，postgres，mssql，db2}。此设置将确定将使用哪些创建/删除脚本和查询。有关支持哪些类型的概述，请参阅[支持的数据库*部分]（https://www.activiti.org/userguide/#supporteddatabases）。
- -  ** databaseSchemaUpdate **：允许设置策略以在流程引擎启动和关闭时处理数据库模式。
+ - **databaseType**：通常不需要指定此属性，因为它是从数据库连接元数据中自动分析的。只应在自动检测失败的情况下指定。可能的值：{h2，mysql，oracle，postgres，mssql，db2}。此设置将确定将使用哪些创建/删除脚本和查询。有关支持哪些类型的概述，请参阅[支持的数据库*部分]（https://www.activiti.org/userguide/#supporteddatabases）。
+ - **databaseSchemaUpdate**：允许设置策略以在流程引擎启动和关闭时处理数据库模式。
    - `false`（默认值）：在创建流程引擎时检查库模式的版本，如果版本不匹配则抛出异常。
    - `true`：在构建流程引擎时，执行检查并在必要时执行模式更新。如果架构不存在，则创建它。
    - `create-drop`：在创建流程引擎时创建模式，并在流程引擎关闭时删除模式。
@@ -307,29 +307,29 @@ activiti.{db}.{create|drop}.{type}.sql
 
 其中* db *是[支持的数据库]（https://www.activiti.org/userguide/#supporteddatabases）和* type *中的任何一个
 
-- **引擎：**引擎执行所需的表。需要。
-- ** identity：**包含用户，组和用户到组的成员的表。这些表是可选的，应在使用引擎附带的默认身份管理时使用。
-- **历史记录：**包含历史记录和审计信息的表格。可选：历史级别设置为* none *时不需要。请注意，这还将禁用将数据存储在历史数据库中的某些功能（例如对任务进行注释）。
+-**引擎：**引擎执行所需的表。需要。
+-**identity：**包含用户，组和用户到组的成员的表。这些表是可选的，应在使用引擎附带的默认身份管理时使用。
+-**历史记录：**包含历史记录和审计信息的表格。可选：历史级别设置为* none *时不需要。请注意，这还将禁用将数据存储在历史数据库中的某些功能（例如对任务进行注释）。
 
-** MySQL用户注意事项：**低于5.6.4的MySQL版本不支持精确到毫秒级的时间戳或日期。更糟糕的是，某些版本在尝试创建此类列时会抛出异常但其他版本则不会。在进行自动创建/升级时，引擎会在执行时更改DDL。使用DDL文件方法时，常规版本和带有* mysql55 *的特殊文件都可用（这适用于低于5.6.4的任何内容）。后一个文件将具有不具有毫秒精度的列类型。
+**MySQL用户注意事项：**低于5.6.4的MySQL版本不支持精确到毫秒级的时间戳或日期。更糟糕的是，某些版本在尝试创建此类列时会抛出异常但其他版本则不会。在进行自动创建/升级时，引擎会在执行时更改DDL。使用DDL文件方法时，常规版本和带有* mysql55 *的特殊文件都可用（这适用于低于5.6.4的任何内容）。后一个文件将具有不具有毫秒精度的列类型。
 
 具体地说，以下适用于MySQL版本
 
-- ** <5.6：**无毫秒精度。 DDL文件可用（查找包含* mysql55 *的文件）。自动创建/更新将开箱即用。
-- ** 5.6.0 - 5.6.3：**无毫秒精度。自动创建/更新将不起作用。建议无论如何都要升级到更新的数据库版本。如果确实需要，可以使用* mysql 5.5 *的DDL文件。
-- ** 5.6.4 +：**毫秒精度可用。 DDL文件可用（默认文件包含* mysql *）。自动创建/更新开箱即用。
+-**<5.6：**无毫秒精度。 DDL文件可用（查找包含* mysql55 *的文件）。自动创建/更新将开箱即用。
+-**5.6.0 - 5.6.3：**无毫秒精度。自动创建/更新将不起作用。建议无论如何都要升级到更新的数据库版本。如果确实需要，可以使用* mysql 5.5 *的DDL文件。
+-**5.6.4 +：**毫秒精度可用。 DDL文件可用（默认文件包含* mysql *）。自动创建/更新开箱即用。
 
 请注意，如果稍后升级MySQL数据库并且已经创建/升级了Activiti表，则必须手动完成列类型更改！
 
 ### 3.7. Database table names explained
 
-Activiti的数据库名称都以** ACT _ **开头。第二部分是表的用例的双字符标识。此用例也将大致匹配服务API。
+Activiti的数据库名称都以**ACT _**开头。第二部分是表的用例的双字符标识。此用例也将大致匹配服务API。
 
-- ** ACT_RE _ ***：* RE *代表`repository`。具有此前缀的表包含* static *信息，例如流程定义和流程资源（图像，规则等）。
-- ** ACT_RU _ ***：* RU *代表`runtime`。这些是包含流程实例，用户任务，变量，作业等的运行时数据的运行时表.Activiti仅在流程实例执行期间存储运行时数据，并在流程实例结束时删除记录。这使运行时表保持小而快。
-- ** ACT_ID _ ***：* ID *代表`identity`。这些表包含身份信息，例如用户，组等。
-- ** ACT_HI _ ***：* HI *代表`history`。这些是包含历史数据的表，例如过去的流程实例，变量，任务等。
-- ** ACT_GE _ ***：`general`数据，用于各种用例。
+-**ACT_RE _***：* RE *代表`repository`。具有此前缀的表包含* static *信息，例如流程定义和流程资源（图像，规则等）。
+-**ACT_RU _***：* RU *代表`runtime`。这些是包含流程实例，用户任务，变量，作业等的运行时数据的运行时表.Activiti仅在流程实例执行期间存储运行时数据，并在流程实例结束时删除记录。这使运行时表保持小而快。
+-**ACT_ID _***：* ID *代表`identity`。这些表包含身份信息，例如用户，组等。
+-**ACT_HI _***：* HI *代表`history`。这些是包含历史数据的表，例如过去的流程实例，变量，任务等。
+-**ACT_GE _***：`general`数据，用于各种用例。
 
 ### 3.8. Database upgrade
 
@@ -511,7 +511,7 @@ public class MyEventListener implements ActivitiEventListener {
 
 Activiti提供了一些基本实现来促进事件监听器的常见用例。这些可以用作基类或示例监听器实现：
 
-- ** org.activiti.engine.delegate.event.BaseEntityEventListener **：一个事件监听器基类，可用于监听特定类型的实体或所有实体的实体相关事件。它隐藏了类型检查并提供了4个应该被覆盖的方法：`onCreate（..）`，`onUpdate（..）`和`onDelete（..）`当创建，更新或删除实体时。对于所有其他与实体相关的事件，调用`onEntityEvent（..）`。
+-**org.activiti.engine.delegate.event.BaseEntityEventListener**：一个事件监听器基类，可用于监听特定类型的实体或所有实体的实体相关事件。它隐藏了类型检查并提供了4个应该被覆盖的方法：`onCreate（..）`，`onUpdate（..）`和`onDelete（..）`当创建，更新或删除实体时。对于所有其他与实体相关的事件，调用`onEntityEvent（..）`。
 
 #### 3.17.2. Configuration and setup
 
@@ -708,9 +708,9 @@ void addEventListener(ActivitiEventListener listenerToAdd, ActivitiEventType... 
 
 所有`ENTITY _ \ *`事件都与引擎内的实体相关。 下面的列表显示了为哪些实体分派了哪些实体事件：
 
- -  ** ENTITY_CREATED，ENTITY_INITIALIZED，ENTITY_DELETED **：附件，评论，部署，执行，组，IdentityLink，作业，模型，ProcessDefinition，ProcessInstance，任务，用户。
- -  ** ENTITY_UPDATED **：附件，部署，执行，组，IdentityLink，作业，模型，ProcessDefinition，ProcessInstance，任务，用户。
- -  ** ENTITY_SUSPENDED，ENTITY_ACTIVATED **：ProcessDefinition，ProcessInstance / Execution，Task。
+ - **ENTITY_CREATED，ENTITY_INITIALIZED，ENTITY_DELETED**：附件，评论，部署，执行，组，IdentityLink，作业，模型，ProcessDefinition，ProcessInstance，任务，用户。
+ - **ENTITY_UPDATED**：附件，部署，执行，组，IdentityLink，作业，模型，ProcessDefinition，ProcessInstance，任务，用户。
+ - **ENTITY_SUSPENDED，ENTITY_ACTIVATED**：ProcessDefinition，ProcessInstance / Execution，Task。
 
 #### 3.17.7. Additional remarks
 
@@ -747,7 +747,7 @@ ProcessEngines类将扫描所有`activiti.cfg.xml`和`activiti-context.xml`文�
 
 所有服务都是无国籍的。这意味着您可以轻松地在群集中的多个节点上运行Activiti，每个节点都转到同一个数据库，而不必担心哪台计算机实际执行了以前的调用。任何对任何服务的调用都是幂等的，无论它在何处执行。
 
-** RepositoryService **可能是使用Activiti引擎时所需的第一个服务。该服务提供管理和操作“部署”和“流程定义”的操作。这里没有详细介绍，流程定义是BPMN 2.0流程的Java对应物。它表示过程的每个步骤的结构和行为。 “部署”是Activiti引擎中的包装单位。部署可以包含多个BPMN 2.0 xml文件和任何其他资源。选择一个部署中包含的内容取决于开发人员。它可以从单个流程BPMN 2.0 xml文件到整个流程包和相关资源（例如，部署* hr-processes *可以包含与hr流程相关的所有内容）。 `RepositoryService`允许`部署'这样的包。部署部署意味着将其上载到引擎，在引擎中，所有进程在存储到数据库之前都会被检查和解析。从那时起，系统就知道部署，现在可以启动部署中包含的任何进程。
+**RepositoryService**可能是使用Activiti引擎时所需的第一个服务。该服务提供管理和操作“部署”和“流程定义”的操作。这里没有详细介绍，流程定义是BPMN 2.0流程的Java对应物。它表示过程的每个步骤的结构和行为。 “部署”是Activiti引擎中的包装单位。部署可以包含多个BPMN 2.0 xml文件和任何其他资源。选择一个部署中包含的内容取决于开发人员。它可以从单个流程BPMN 2.0 xml文件到整个流程包和相关资源（例如，部署* hr-processes *可以包含与hr流程相关的所有内容）。 `RepositoryService`允许`部署'这样的包。部署部署意味着将其上载到引擎，在引擎中，所有进程在存储到数据库之前都会被检查和解析。从那时起，系统就知道部署，现在可以启动部署中包含的任何进程。
 
 此外，这项服务允许
 
@@ -756,16 +756,16 @@ ProcessEngines类将扫描所有`activiti.cfg.xml`和`activiti-context.xml`文�
 - 检索各种资源，例如部署中包含的文件或引擎自动生成的流程图。
 - 检索流程定义的POJO版本，该版本可用于使用Java而不是xml对流程进行内省。
 
-虽然`RepositoryService`更像是静态信息（即数据没有改变，或者至少不是很多），但** RuntimeService **恰恰相反。它涉及启动流程定义的新流程实例。如上所述，“流程定义”定义了流程中不同步骤的结构和行为。流程实例是这种流程定义的一次执行。对于每个流程定义，通常会有许多实例同时运行。 “RuntimeService”也是用于检索和存储“过程变量”的服务。这是特定于给定流程实例的数据，并且可以由流程中的各种构造使用（例如，专用网关通常使用流程变量来确定选择哪个路径来继续该流程）。 `Runtimeservice`还允许查询流程实例和执行。执行是BPMN 2.0的“令牌”概念的表示。基本上，执行是指向流程实例当前所在位置的指针。最后，只要流程实例等待外部触发器并且需要继续该过程，就会使用`RuntimeService`。流程实例可以具有各种“等待状态”，并且该服务包含各种操作以*信号*接收外部触发器的实例并且可以继续流程实例。
+虽然`RepositoryService`更像是静态信息（即数据没有改变，或者至少不是很多），但**RuntimeService**恰恰相反。它涉及启动流程定义的新流程实例。如上所述，“流程定义”定义了流程中不同步骤的结构和行为。流程实例是这种流程定义的一次执行。对于每个流程定义，通常会有许多实例同时运行。 “RuntimeService”也是用于检索和存储“过程变量”的服务。这是特定于给定流程实例的数据，并且可以由流程中的各种构造使用（例如，专用网关通常使用流程变量来确定选择哪个路径来继续该流程）。 `Runtimeservice`还允许查询流程实例和执行。执行是BPMN 2.0的“令牌”概念的表示。基本上，执行是指向流程实例当前所在位置的指针。最后，只要流程实例等待外部触发器并且需要继续该过程，就会使用`RuntimeService`。流程实例可以具有各种“等待状态”，并且该服务包含各种操作以*信号*接收外部触发器的实例并且可以继续流程实例。
 
-需要由系统的实际人类用户执行的任务是BPM引擎（如Activiti）的核心。围绕任务的所有内容都分组在** TaskService **中，例如
+需要由系统的实际人类用户执行的任务是BPM引擎（如Activiti）的核心。围绕任务的所有内容都分组在**TaskService**中，例如
 
 - 查询分配给用户或组的任务
 - 创建新的*独立*任务。这些是与流程实例无关的任务。
 - 操作分配任务的用户或以某种方式参与任务的用户。
 - 声明并完成任务。声明意味着某人决定成为该任务的受让人，这意味着该用户将完成该任务。完成意味着*完成任务的工作*。通常，这是填写各种形式。
 
-** IdentityService **非常简单。它允许组和用户的管理（创建，更新，删除，查询......）。这很重要
+**IdentityService**非常简单。它允许组和用户的管理（创建，更新，删除，查询......）。这很重要
 
 
 ### 4.2. Exception strategy
@@ -781,7 +781,7 @@ The base exception in Activiti is the `org.activiti.engine.ActivitiException`, a
  void complete(String taskId);
 ```
 
-在上面的示例中，当传递不存在任务的id时，将引发异常。此外，由于javadoc **明确声明taskId不能为null，因此在传递null时将抛出ActivitiIllegalArgumentException。
+在上面的示例中，当传递不存在任务的id时，将引发异常。此外，由于javadoc**明确声明taskId不能为null，因此在传递null时将抛出ActivitiIllegalArgumentException。
 
 即使我们想要避免一个大的异常层次结构，也会添加以下子类，这些子类在特定情况下会被抛出。在流程执行或API调用期间发生的所有其他错误都不适合下面可能的异常，它们将作为常规`ActivitiExceptions`抛出。
 
@@ -802,7 +802,7 @@ The base exception in Activiti is the `org.activiti.engine.ActivitiException`, a
 
 #### 4.3.1. Deploying the process
 
-通过** RepositoryService **访问与* static * data（例如流程定义）相关的所有内容。 从概念上讲，每个这样的静态数据都是Activiti引擎的* repository *的内容。
+通过**RepositoryService**访问与* static * data（例如流程定义）相关的所有内容。 从概念上讲，每个这样的静态数据都是Activiti引擎的* repository *的内容。
 
 在`src / test / resources / org / activiti / test`资源文件夹中创建一个新的xml文件`VacationRequest.bpmn20.xml`（如果你没有使用单元测试模板，则在其他任何地方），并带有以下内容。 请注意，本节不会解释上面示例中使用的xml构造。 如果需要，请阅读[BPMN 2.0章节]（https://www.activiti.org/userguide/#bpmn20）以熟悉这些结构。
 
@@ -912,7 +912,7 @@ Log.info("Number of process definitions: " + repositoryService.createProcessDefi
 
 在将流程定义部署到Activiti引擎后，我们可以从中启动新的流程实例。 对于每个流程定义，通常有许多流程实例。 流程定义是* blueprint *，而流程实例是它的运行时执行。
 
-可以在** RuntimeService **中找到与进程的运行时状态相关的所有内容。 有多种方法可以启动新的流程实例。 在下面的代码片段中，我们使用在流程定义xml中定义的密钥来启动流程实例。 我们还在流程实例启动时提供了一些流程变量，因为第一个用户任务的描述将在其表达式中使用这些变量。 通常使用过程变量，因为它们为特定过程定义的过程实例赋予了意义。 通常，流程变量使流程实例彼此不同。
+可以在**RuntimeService**中找到与进程的运行时状态相关的所有内容。 有多种方法可以启动新的流程实例。 在下面的代码片段中，我们使用在流程定义xml中定义的密钥来启动流程实例。 我们还在流程实例启动时提供了一些流程变量，因为第一个用户任务的描述将在其表达式中使用这些变量。 通常使用过程变量，因为它们为特定过程定义的过程实例赋予了意义。 通常，流程变量使流程实例彼此不同。
 
 ```
 Map<String, Object> variables = new HashMap<String, Object>();
@@ -1146,14 +1146,14 @@ Activiti使用UEL进行表达式解析。 UEL代表*统一表达语言*，是EE6
 
 表达式可用于例如[Java服务任务]（https://www.activiti.org/userguide/#bpmnJavaServiceTaskXML），[执行监听器]（https://www.activiti.org/userguide/#executionListeners）， [任务监听器]（https://www.activiti.org/userguide/#taskListeners）和[条件序列流程]（https://www.activiti.org/userguide/#conditionalSequenceFlowXml）。尽管有两种类型的表达式，值表达式和方法表达式，但Activiti对此进行了抽象，因此它们都可以在需要“表达式”的地方使用。
 
-- **值表达式**：解析为值。默认情况下，可以使用所有过程变量。此外，所有spring-beans（如果使用Spring）都可用于表达式。一些例子：
+-**值表达式**：解析为值。默认情况下，可以使用所有过程变量。此外，所有spring-beans（如果使用Spring）都可用于表达式。一些例子：
 
 ```
 ${myVar}
 ${myBean.myProperty}
 ```
 
- -  **方法表达式**：调用带或不带参数的方法。 **在调用不带参数的方法时，请确保在方法名称后添加空括号（因为这会将表达式与值表达式区分开来）。**传递的参数可以是文字值或自己解析的表达式。 例子：
+ - **方法表达式**：调用带或不带参数的方法。**在调用不带参数的方法时，请确保在方法名称后添加空括号（因为这会将表达式与值表达式区分开来）。**传递的参数可以是文字值或自己解析的表达式。 例子：
 ```
 ${printer.print()}
 ${myBean.addNewOrder('orderName')}
@@ -1165,7 +1165,7 @@ ${myBean.doSomething(myVar, execution)}
 除了所有流程变量之外，还有一些默认对象可用于表达式：
 
 - `execution`：`DelegateExecution`，它包含有关正在执行的其他信息。
-- `task`：`DelegateTask`，它包含有关当前任务的其他信息。 **注意：仅适用于从任务侦听器评估的表达式。**
+- `task`：`DelegateTask`，它包含有关当前任务的其他信息。**注意：仅适用于从任务侦听器评估的表达式。**
 - `authenticatedUserId`：当前经过身份验证的用户的id。如果没有用户通过身份验证，则该变量不可用。
 
 有关更具体的用法和示例，请查看[Spring中的表达式]（https://www.activiti.org/userguide/#springExpressions），[Java服务任务]（https://www.activiti.org/userguide/# bpmnJavaServiceTaskXML），[执行监听器]（https://www.activiti.org/userguide/#executionListeners），[任务监听器]（https://www.activiti.org/userguide/#taskListeners）或[条件序列流程] （https://www.activiti.org/userguide/#conditionalSequenceFlowXml）。
@@ -1407,7 +1407,7 @@ UserBean看起来像这样。 请记住，在Spring bean配置中，我们将rep
 ```
 public class UserBean {
 
-  /** injected by Spring */
+  /**injected by Spring */
   private RuntimeService runtimeService;
 
   @Transactional
@@ -1426,7 +1426,7 @@ public class UserBean {
 
 ### 5.3. Expressions
 
-在使用ProcessEngineFactoryBean时，默认情况下，BPMN流程中的所有[表达式]（https://www.activiti.org/userguide/#apiExpressions）也会*查看*所有Spring bean。 可以使用您可以配置的映射来限制要在表达式中公开的bean，甚至根本不暴露任何bean。 下面的示例公开了一个bean（打印机），可以在“打印机”键下使用。 **要完全暴露NO bean，只需在SpringProcessEngineConfiguration上将空列表作为beans属性传递。 如果未设置beans属性，则上下文中的所有Spring bean都可用。**
+在使用ProcessEngineFactoryBean时，默认情况下，BPMN流程中的所有[表达式]（https://www.activiti.org/userguide/#apiExpressions）也会*查看*所有Spring bean。 可以使用您可以配置的映射来限制要在表达式中公开的bean，甚至根本不暴露任何bean。 下面的示例公开了一个bean（打印机），可以在“打印机”键下使用。**要完全暴露NO bean，只需在SpringProcessEngineConfiguration上将空列表作为beans属性传递。 如果未设置beans属性，则上下文中的所有Spring bean都可用。**
 
 ```
 <bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
@@ -2257,7 +2257,7 @@ repositoryService
 | ---- | -------------------------------------------------- ---------- |
 | | |
 
-创建一个新的XML文件（*右键单击任何项​​目并选择New→Other→XML-XML File *）并为其命名。确保文件**以.bpmn20.xml或.bpmn **结尾，否则引擎将不会选择此文件进行部署。
+创建一个新的XML文件（*右键单击任何项​​目并选择New→Other→XML-XML File *）并为其命名。确保文件**以.bpmn20.xml或.bpmn**结尾，否则引擎将不会选择此文件进行部署。
 
 ！[new.bpmn.procdef（https://www.activiti.org/userguide/images/new.bpmn.procdef.png）
 
@@ -2285,14 +2285,14 @@ xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL
 
 `process`元素有两个属性：
 
-- ** id **：此属性是**必需**并映射到Activiti`ProcessDefinition`对象的** key **属性。然后，可以通过`RuntimeService`上的`startProcessInstanceByKey`方法使用此`id`来启动流程定义的新流程实例。此方法将始终采用流程定义的**最新部署版本**。
+-**id**：此属性是**必需**并映射到Activiti`ProcessDefinition`对象的**key**属性。然后，可以通过`RuntimeService`上的`startProcessInstanceByKey`方法使用此`id`来启动流程定义的新流程实例。此方法将始终采用流程定义的**最新部署版本**。
 
 ```
 ProcessInstance processInstance = runtimeService.startProcessInstanceByKey（“myProcess”）;
 ```
 
-- 这里需要注意的是，这与调用`startProcessInstanceById`方法不同。此方法需要Activiti引擎在部署时生成的String id，并且可以通过调用`processDefinition.getId（）`方法来检索。生成的id的格式为** key：version **，长度为**约束为64个字符**。如果你得到一个`ActivitiException`声明生成的id太长，则限制进程的* key *字段中的文本。
-- ** name **：此属性是**可选**并映射到`ProcessDefinition`的* name *属性。引擎本身不使用此属性，因此它可用于在用户界面中显示更人性化的名称。
+- 这里需要注意的是，这与调用`startProcessInstanceById`方法不同。此方法需要Activiti引擎在部署时生成的String id，并且可以通过调用`processDefinition.getId（）`方法来检索。生成的id的格式为**key：version**，长度为**约束为64个字符**。如果你得到一个`ActivitiException`声明生成的id太长，则限制进程的* key *字段中的文本。
+-**name**：此属性是**可选**并映射到`ProcessDefinition`的* name *属性。引擎本身不使用此属性，因此它可用于在用户界面中显示更人性化的名称。
 
 [[10minutetutorial]]
 
@@ -2596,12 +2596,12 @@ public class TenMinuteTutorial {
 
 BPMN 2.0标准对所有相关方都是一件好事。最终用户不会受到供应商锁定的影响，具体取决于专有解决方案。框架，特别是像Activiti这样的开源框架，可以实现与大型供应商具有相同（通常更好实现;-)功能的解决方案。由于BPMN 2.0标准，从这样一个大型供应商解决方案向Activiti的过渡是一个简单而平稳的路径。
 
-然而，标准的缺点在于，它始终是不同公司（通常是愿景）之间的许多讨论和妥协的结果。作为开发人员阅读流程定义的BPMN 2.0 XML，有时候感觉某些结构或做事方式太麻烦。由于Activiti将易用性作为首要任务，因此我们推出了名为** Activiti BPMN扩展**的东西。这些*扩展*是新构造或简化某些不在BPMN 2.0规范中的构造的方法。
+然而，标准的缺点在于，它始终是不同公司（通常是愿景）之间的许多讨论和妥协的结果。作为开发人员阅读流程定义的BPMN 2.0 XML，有时候感觉某些结构或做事方式太麻烦。由于Activiti将易用性作为首要任务，因此我们推出了名为**Activiti BPMN扩展**的东西。这些*扩展*是新构造或简化某些不在BPMN 2.0规范中的构造的方法。
 
 尽管BPMN 2.0规范明确指出它是为自定义扩展而制定的，但我们确保：
 
 - 这种自定义扩展的先决条件是**总是**必须是**标准的做事方式的简单转换**。因此，当您决定使用自定义扩展时，您不必害怕无法回复。
-- 使用自定义扩展时，通过给出新的XML元素，属性等** activiti：**命名空间前缀，可以清楚地表明这一点。
+- 使用自定义扩展时，通过给出新的XML元素，属性等**activiti：**命名空间前缀，可以清楚地表明这一点。
 
 因此，无论您是否想要使用自定义扩展程序，完全取决于您。有几个因素会影响这个决定（图形编辑器使用，公司政策等）。我们只提供它们，因为我们相信标准中的某些要点可以更简单或更有效。您可以随意向我们（积极和/或消极）反馈我们的扩展程序，或发布自定义扩展程序的新想法。谁知道，有一天你的想法可能会出现在规范中！
 
@@ -2609,8 +2609,8 @@ BPMN 2.0标准对所有相关方都是一件好事。最终用户不会受到供
 
 事件用于模拟在生命周期过程中发生的事情。 事件总是可视化为圆圈。 在BPMN 2.0中，存在两个主要事件类别：* catch *或* throwing * event。
 
- -  **捕获：**当流程执行到达事件时，它将等待触发发生。 触发器的类型由XML中的内部图标或类型声明定义。 捕捉事件通过未填充的内部图标（即，它是白色）在视觉上区别于投掷事件。
- -  **投掷：**当进程执行到达事件时，触发器被触发。 触发器的类型由XML中的内部图标或类型声明定义。 通过填充黑色的内部图标在视觉上区分投掷事件。
+ - **捕获：**当流程执行到达事件时，它将等待触发发生。 触发器的类型由XML中的内部图标或类型声明定义。 捕捉事件通过未填充的内部图标（即，它是白色）在视觉上区别于投掷事件。
+ - **投掷：**当进程执行到达事件时，触发器被触发。 触发器的类型由XML中的内部图标或类型声明定义。 通过填充黑色的内部图标在视觉上区分投掷事件。
 
 #### 8.2.1. Event Definitions
 
@@ -2630,7 +2630,7 @@ businessCalendarName指向流程引擎配置中的业务日历的位置。 省�
 
 定时器定义必须具有以下一个元素：
 
- -  ** timeDate **。 当触发器被触发时，此格式以[ISO 8601]（http://en.wikipedia.org/wiki/ISO_8601#Dates）格式指定固定日期。 例：
+ - **timeDate**。 当触发器被触发时，此格式以[ISO 8601]（http://en.wikipedia.org/wiki/ISO_8601#Dates）格式指定固定日期。 例：
 
 ```
 <timerEventDefinition>
@@ -2638,7 +2638,7 @@ businessCalendarName指向流程引擎配置中的业务日历的位置。 省�
 </timerEventDefinition>
 ```
 
- -  ** timeDuration **。 要指定计时器在触发之前应运行多长时间，可以将* timeDuration *指定为* timerEventDefinition *的子元素。 使用的格式是[ISO 8601]（http://en.wikipedia.org/wiki/ISO_8601#Durations）格式（根据BPMN 2.0规范的要求）。 示例（间隔持续10天）：
+ - **timeDuration**。 要指定计时器在触发之前应运行多长时间，可以将* timeDuration *指定为* timerEventDefinition *的子元素。 使用的格式是[ISO 8601]（http://en.wikipedia.org/wiki/ISO_8601#Durations）格式（根据BPMN 2.0规范的要求）。 示例（间隔持续10天）：
 
 ```
 <timerEventDefinition>
@@ -2646,7 +2646,7 @@ businessCalendarName指向流程引擎配置中的业务日历的位置。 省�
 </timerEventDefinition>
 ```
 
- -  ** timeCycle **。 指定重复间隔，这对于定期启动进程或为过期用户任务发送多个提醒非常有用。 时间周期元素可以是两种格式。 首先是[ISO 8601]（http://en.wikipedia.org/wiki/ISO_8601#Repeating_intervals）标准规定的经常性持续时间的格式。 示例（3个重复间隔，每个持续10个小时）：
+ - **timeCycle**。 指定重复间隔，这对于定期启动进程或为过期用户任务发送多个提醒非常有用。 时间周期元素可以是两种格式。 首先是[ISO 8601]（http://en.wikipedia.org/wiki/ISO_8601#Repeating_intervals）标准规定的经常性持续时间的格式。 示例（3个重复间隔，每个持续10个小时）：
 
 还可以将* endDate *指定为* timeCycle *上的可选属性，或者在时间表达式的末尾指定如下：`R3 / PT10H / $ {EndDate}`。 到达endDate时，应用程序将停止为此任务创建其他作业。 它接受静态值[ISO 8601]（http://en.wikipedia.org/wiki/ISO_8601#Dates）标准，例如*“2015-02-25T16：42：11 + 00:00”*或变量* ${结束日期}*
 
@@ -2690,7 +2690,7 @@ businessCalendarName指向流程引擎配置中的业务日历的位置。 省�
 
 #### 8.2.3. Error Event Definitions
 
-**重要说明：** BPMN错误与Java异常不同。 事实上，两者没有任何共同之处。 BPMN错误事件是一种建模*业务异常*的方法。 Java异常以[他们自己的特定方式]处理（https://www.activiti.org/userguide/#serviceTaskExceptionHandling）。
+**重要说明：**BPMN错误与Java异常不同。 事实上，两者没有任何共同之处。 BPMN错误事件是一种建模*业务异常*的方法。 Java异常以[他们自己的特定方式]处理（https://www.activiti.org/userguide/#serviceTaskExceptionHandling）。
 
 ```
 <endEvent id="myErrorEndEvent">
@@ -2781,7 +2781,7 @@ RuntimeService.signalEventReceived(String signalName, String executionId);
 
 ！[bpmn.signal.event.warning.1（https://www.activiti.org/userguide/images/bpmn.signal.event.warning.1.png）
 
-BPMN不支持上述过程中描述的模式。这个想法是，执行“执行某事”任务时抛出的错误被边界错误事件捕获，并将使用信号throw事件传播到并行执行路径，然后中断“并行执行”任务。到目前为止，Activiti将按预期执行。信号将传播到捕获边界事件并中断任务。 **但是，由于信号的广播语义，它也会传播到已订阅信号事件的所有其他进程实例。**在这种情况下，这可能不是我们想要的。
+BPMN不支持上述过程中描述的模式。这个想法是，执行“执行某事”任务时抛出的错误被边界错误事件捕获，并将使用信号throw事件传播到并行执行路径，然后中断“并行执行”任务。到目前为止，Activiti将按预期执行。信号将传播到捕获边界事件并中断任务。**但是，由于信号的广播语义，它也会传播到已订阅信号事件的所有其他进程实例。**在这种情况下，这可能不是我们想要的。
 
 **注意：**信号事件不会对特定流程实例执行任何类型的关联。相反，它会广播到所有流程实例。如果您只需要向特定流程实例发送信号，请手动执行关联并使用`signalEventReceived（String signalName，String executionId）和相应的[查询机制]（https://www.activiti.org/userguide/# bpmnSignalEventDefinitionQuery）。
 
@@ -2878,7 +2878,7 @@ Execution execution = runtimeService.createExecutionQuery()
 
 在启动事件中，可以指定以下特定于Activiti的属性：
 
- -  ** initiator **：标识进程启动时将在其中存储经过身份验证的用户标识的变量名称。 例：
+ - **initiator**：标识进程启动时将在其中存储经过身份验证的用户标识的变量名称。 例：
 
 ```
 <startEvent id="request" activiti:initiator="initiator" />
@@ -2925,7 +2925,7 @@ ProcessInstance processInstance = runtimeService.startProcessInstanceByXXX();
 
 #####无启动事件的自定义扩展
 
-** formKey **：对用户在启动新流程实例时必须填写的表单模板的引用。 更多信息可以在[表格部分]中找到（https://www.activiti.org/userguide/#forms）示例：
+**formKey**：对用户在启动新流程实例时必须填写的表单模板的引用。 更多信息可以在[表格部分]中找到（https://www.activiti.org/userguide/#forms）示例：
 
 ```
 <startEvent id =“request”activiti：formKey =“org / activiti / examples / taskforms / request.form”/>
@@ -2993,7 +2993,7 @@ ProcessInstance startProcessInstanceByMessage(String messageName, Map<String, Ob
 ProcessInstance startProcessInstanceByMessage(String messageName, String businessKey, Map<String, Object< processVariables);
 ```
 
-`messageName`是`messageEventDefinition`的`messageRef`属性引用的`message`元素的`name`属性中给出的名称。 ** **启动流程实例时，以下注意事项适用：
+`messageName`是`messageEventDefinition`的`messageRef`属性引用的`message`元素的`name`属性中给出的名称。****启动流程实例时，以下注意事项适用：
 
 - 仅在顶级进程上支持消息启动事件。嵌入式子进程不支持消息启动事件。
 - 如果流程定义有多个消息启动事件，`runtimeService.startProcessInstanceByMessage（...）`允许选择适当的启动事件。
@@ -3072,7 +3072,7 @@ ProcessInstance startProcessInstanceByMessage(String messageName, String busines
 
 ##### Description
 
-[error]（https://www.activiti.org/userguide/#bpmnErrorEventDefinition）启动事件可用于触发事件子流程。 **错误启动事件不能用于启动流程实例**。
+[error]（https://www.activiti.org/userguide/#bpmnErrorEventDefinition）启动事件可用于触发事件子流程。**错误启动事件不能用于启动流程实例**。
 
 错误启动事件总是在中断。
 
@@ -3147,7 +3147,7 @@ A * none * end事件表示未指定到达事件时抛出的* result *。 因此�
 ...
 ```
 
-* error *的** errorCode **将用于查找匹配的捕获边界错误事件。 如果* errorRef *与任何定义的* error *不匹配，则* errorRef *用作* errorCode *的快捷方式。 这是Activiti特定的快捷方式。 更具体地说，以下片段在功能上是等同的。
+* error *的**errorCode**将用于查找匹配的捕获边界错误事件。 如果* errorRef *与任何定义的* error *不匹配，则* errorRef *用作* errorCode *的快捷方式。 这是Activiti特定的快捷方式。 更具体地说，以下片段在功能上是等同的。
 
 ```
 <error id="myError" errorCode="error123" />
@@ -3236,7 +3236,7 @@ A * none * end事件表示未指定到达事件时抛出的* result *。 因此�
 边界事件定义为
 
  - 唯一标识符（流程范围）
- - 通过** attachedToRef **属性引用事件的活动的引用。 注意，边界事件定义在与它们所附着的活动相同的级别上（即，不在活动内包含边界事件）。
+ - 通过**attachedToRef**属性引用事件的活动的引用。 注意，边界事件定义在与它们所附着的活动相同的级别上（即，不在活动内包含边界事件）。
  - 定义边界事件类型的* XXXEventDefinition *形式的XML子元素（例如* TimerEventDefinition *，* ErrorEventDefinition *等）。 有关详细信息，请参阅特定边界事件类型。
 
 #### 8.2.18. Timer Boundary Event
@@ -3253,7 +3253,7 @@ A * none * end事件表示未指定到达事件时抛出的* result *。 因此�
 
 ##### XML Representation
 
-计时器边界事件被定义为[常规边界事件]（https://www.activiti.org/userguide/#bpmnBoundaryEvent）。 在这种情况下，特定类型子元素是** timerEventDefinition **元素。
+计时器边界事件被定义为[常规边界事件]（https://www.activiti.org/userguide/#bpmnBoundaryEvent）。 在这种情况下，特定类型子元素是**timerEventDefinition**元素。
 
 ```
 <boundaryEvent id="escalationTimer" cancelActivity="true" attachedToRef="firstLineSupport">
@@ -3320,11 +3320,11 @@ A * none * end事件表示未指定到达事件时抛出的* result *。 因此�
 ...
 ```
 
-** errorCode **用于匹配捕获的错误：
+**errorCode**用于匹配捕获的错误：
 
  - 如果省略* errorRef *，则边界错误事件将捕获**任何错误事件**，无论* error *的errorCode如何。
  - 如果提供了* errorRef *且它引用了现有的* error *，则边界事件将**仅捕获具有相同错误代码**的错误。
- - 如果提供了* errorRef *，但BPMN 2.0文件中没有定义* error *，则** errorRef用作errorCode **（类似于错误结束事件）。
+ - 如果提供了* errorRef *，但BPMN 2.0文件中没有定义* error *，则**errorRef用作errorCode**（类似于错误结束事件）。
 
 
 ##### Example
@@ -3495,7 +3495,7 @@ A * none * end事件表示未指定到达事件时抛出的* result *。 因此�
 
 ##### XML Representation
 
-计时器中间事件被定义为[中间捕获事件]（https://www.activiti.org/userguide/#bpmnIntermediateCatchingEvent）。 在这种情况下，特定类型子元素是** timerEventDefinition **元素。
+计时器中间事件被定义为[中间捕获事件]（https://www.activiti.org/userguide/#bpmnIntermediateCatchingEvent）。 在这种情况下，特定类型子元素是**timerEventDefinition**元素。
 
 ```
 <intermediateCatchEvent id="timer">
@@ -3523,7 +3523,7 @@ See [timer event definitions](https://www.activiti.org/userguide/#timerEventDefi
 
 ##### XML representation
 
-信号中间事件被定义为[中间捕获事件]（https://www.activiti.org/userguide/#bpmnIntermediateCatchingEvent）。 在这种情况下，特定类型子元素是** signalEventDefinition **元素。
+信号中间事件被定义为[中间捕获事件]（https://www.activiti.org/userguide/#bpmnIntermediateCatchingEvent）。 在这种情况下，特定类型子元素是**signalEventDefinition**元素。
 
 ```
 <intermediateCatchEvent id="signal">
@@ -3549,7 +3549,7 @@ See section on [signal event definitions](https://www.activiti.org/userguide/#bp
 
 ##### XML representation
 
-消息中间事件被定义为[中间捕获事件]（https://www.activiti.org/userguide/#bpmnIntermediateCatchingEvent）。 在这种情况下，特定类型的子元素是** messageEventDefinition **元素。
+消息中间事件被定义为[中间捕获事件]（https://www.activiti.org/userguide/#bpmnIntermediateCatchingEvent）。 在这种情况下，特定类型的子元素是**messageEventDefinition**元素。
 
 ```
 <intermediateCatchEvent id="message">
@@ -3602,8 +3602,8 @@ See section on [signal event definitions](https://www.activiti.org/userguide/#bp
 
 在Activiti中，信号被广播给所有活动的处理程序（即所有捕获信号事件）。 信号可以同步或异步发布。
 
- - 在默认配置中，信号同步传送** **。 这意味着抛出流程实例会等待信号传递到所有捕获流程实例。 捕获流程实例也在与抛出流程实例相同的事务中得到通知，这意味着如果其中一个通知的实例产生技术错误（抛出异常），则所有涉及的实例都会失败。
- - 信号也可以异步** **传送。 在那种情况下，确定在达到投掷信号事件时哪些处理者是活动的。 对于每个活动的处理程序，JobExecutor存储并传递异步通知消息（Job）。
+ - 在默认配置中，信号同步传送****。 这意味着抛出流程实例会等待信号传递到所有捕获流程实例。 捕获流程实例也在与抛出流程实例相同的事务中得到通知，这意味着如果其中一个通知的实例产生技术错误（抛出异常），则所有涉及的实例都会失败。
+ - 信号也可以异步****传送。 在那种情况下，确定在达到投掷信号事件时哪些处理者是活动的。 对于每个活动的处理程序，JobExecutor存储并传递异步通知消息（Job）。
 
 ##### Graphical notation
 
@@ -3613,7 +3613,7 @@ See section on [signal event definitions](https://www.activiti.org/userguide/#bp
 
 ##### XML representation
 
-信号中间事件被定义为[中间投掷事件]（https://www.activiti.org/userguide/#bpmnIntermediateThrowEvent）。 在这种情况下，特定类型子元素是** signalEventDefinition **元素。
+信号中间事件被定义为[中间投掷事件]（https://www.activiti.org/userguide/#bpmnIntermediateThrowEvent）。 在这种情况下，特定类型子元素是**signalEventDefinition**元素。
 
 ```
 <intermediateThrowEvent id="signal">
@@ -3675,7 +3675,7 @@ See section on [signal event definitions](https://www.activiti.org/userguide/#bp
 
 ##### Xml representation
 
-补偿中间事件被定义为[中间投掷事件]（https://www.activiti.org/userguide/#bpmnIntermediateThrowEvent）。 在这种情况下，特定类型子元素是** compensateEventDefinition **元素。
+补偿中间事件被定义为[中间投掷事件]（https://www.activiti.org/userguide/#bpmnIntermediateThrowEvent）。 在这种情况下，特定类型子元素是**compensateEventDefinition**元素。
 
 ```
 <intermediateThrowEvent id="throwCompensation">
@@ -3705,7 +3705,7 @@ See section on [signal event definitions](https://www.activiti.org/userguide/#bp
 
 #### 8.3.3. XML representation
 
-序列流需要具有进程唯一** id **，以及对现有**源**和**目标**元素的引用。
+序列流需要具有进程唯一**id**，以及对现有**源**和**目标**元素的引用。
 
 ```
 <sequenceFlow id="flow1" sourceRef="theStart" targetRef="theTask" />
@@ -3727,7 +3727,7 @@ See section on [signal event definitions](https://www.activiti.org/userguide/#bp
 
 ##### XML representation
 
-条件序列流在XML中表示为常规序列流，包含** conditionExpression **子元素。 请注意，目前仅支持* tFormalExpressions *，省略* xsi：type =“”*定义将默认为仅支持的表达式类型。
+条件序列流在XML中表示为常规序列流，包含**conditionExpression**子元素。 请注意，目前仅支持* tFormalExpressions *，省略* xsi：type =“”*定义将默认为仅支持的表达式类型。
 
 ```
 <sequenceFlow id="flow" sourceRef="theStart" targetRef="theTask">
@@ -3737,7 +3737,7 @@ See section on [signal event definitions](https://www.activiti.org/userguide/#bp
 </sequenceFlow>
 ```
 
-目前，条件表达式**只能与UEL **一起使用，有关这些的详细信息可以在[表达式]部分（https://www.activiti.org/userguide/#apiExpressions）中找到。 使用的表达式应该解析为布尔值，否则在评估条件时会抛出异常。
+目前，条件表达式**只能与UEL**一起使用，有关这些的详细信息可以在[表达式]部分（https://www.activiti.org/userguide/#apiExpressions）中找到。 使用的表达式应该解析为布尔值，否则在评估条件时会抛出异常。
 
  - 下面的示例通过getter以典型的JavaBean样式引用流程变量的数据。
 
@@ -3845,8 +3845,8 @@ Activiti发行版包含使用值和方法表达式的以下示例流程（请参
 
 并行网关的功能基于传入和传出顺序流：
 
-- ** fork：**并行执行所有传出序列流，为每个序列流创建一个并发执行。
-- ** join：**到达并行网关的所有并发执行在网关中等待，直到每个传入的序列流都到达执行。然后，该过程继续经过加入网关。
+-**fork：**并行执行所有传出序列流，为每个序列流创建一个并发执行。
+-**join：**到达并行网关的所有并发执行在网关中等待，直到每个传入的序列流都到达执行。然后，该过程继续经过加入网关。
 
 请注意，如果同一并行网关有多个传入和传出顺序流，则并行网关可以具有分支和连接行为**。在这种情况下，网关将首先加入所有传入的序列流，然后再拆分为多个并发的执行路径。
 
@@ -3925,8 +3925,8 @@ assertEquals("Ship Order", task2.getName());
 
 包容性网关的功能基于传入和传出顺序流：
 
-- ** fork：**评估所有传出序列流条件，并且对于评估为true的序列流条件，并行地遵循流，为每个序列流创建一个并发执行。
-- ** join：**到达包含网关的所有并发执行在网关中等待，直到每个具有进程令牌的传入序列流都到达为止。这是与并行网关的重要区别。换句话说，包容性网关将只等待将要执行的传入序列流。在加入之后，该过程继续通过加入包含网关。
+-**fork：**评估所有传出序列流条件，并且对于评估为true的序列流条件，并行地遵循流，为每个序列流创建一个并发执行。
+-**join：**到达包含网关的所有并发执行在网关中等待，直到每个具有进程令牌的传入序列流都到达为止。这是与并行网关的重要区别。换句话说，包容性网关将只等待将要执行的传入序列流。在加入之后，该过程继续通过加入包含网关。
 
 请注意，如果同一个包含网关有多个传入和传出顺序流，则包含网关可以具有**和加密行为**。在这种情况下，网关将首先连接具有进程令牌的所有传入序列流，然后在具有评估为true的条件的传出序列流拆分为多个并发执行路径。
 
@@ -4092,7 +4092,7 @@ A *用户任务*用于模拟需要由人类演员完成的工作。 当流程执
 <userTask id="theTask" name="Important task" />
 ```
 
-用户任务也可以具有描述。 事实上，任何BPMN 2.0元素都可以有描述。 通过添加** documentation **元素来定义描述。
+用户任务也可以具有描述。 事实上，任何BPMN 2.0元素都可以有描述。 通过添加**documentation**元素来定义描述。
 
 ```
 <userTask id="theTask" name="Schedule meeting" >
@@ -4111,7 +4111,7 @@ task.getDescription()
 
 每个任务都有一个字段，指示该任务的截止日期。 查询API可用于查询在特定日期之前，之后或之后到期的任务。
 
-有一个活动扩展，允许您在任务定义中指定表达式，以设置创建任务时的初始截止日期。 表达式**应始终解析为java.util.Date，java.util.String（ISO8601格式化），ISO8601持续时间（例如PT50M）或null **。 例如，您可以使用在流程中先前表单中输入的日期或在先前的服务任务中计算的日期。 如果使用持续时间，则根据当前时间计算到期日期，并按给定时间段递增。 例如，当“PT30M”用作dueDate时，任务将在30分钟后完成。
+有一个活动扩展，允许您在任务定义中指定表达式，以设置创建任务时的初始截止日期。 表达式**应始终解析为java.util.Date，java.util.String（ISO8601格式化），ISO8601持续时间（例如PT50M）或null**。 例如，您可以使用在流程中先前表单中输入的日期或在先前的服务任务中计算的日期。 如果使用持续时间，则根据当前时间计算到期日期，并按给定时间段递增。 例如，当“PT30M”用作dueDate时，任务将在30分钟后完成。
 
 ```
 <userTask id="theTask" name="Important task" activiti:dueDate="${dateVariable}"/>
@@ -4121,7 +4121,7 @@ task.getDescription()
 
 ##### User assignment
 
-用户任务可以直接分配给用户。 这是通过定义** humanPerformer **子元素来完成的。 这样的* humanPerformer *定义需要一个实际定义用户的** resourceAssignmentExpression **。 目前，仅支持** formalExpressions **。
+用户任务可以直接分配给用户。 这是通过定义**humanPerformer**子元素来完成的。 这样的* humanPerformer *定义需要一个实际定义用户的**resourceAssignmentExpression**。 目前，仅支持**formalExpressions**。
 
 ```
 <process >
@@ -4145,7 +4145,7 @@ task.getDescription()
 List<Task> tasks = taskService.createTaskQuery().taskAssignee("kermit").list();
 ```
 
-任务也可以放在人们所谓的**候选任务列表**中。 在这种情况下，必须使用** potentialOwner **构造。 用法类似于* humanPerformer *构造。 请注意，需要为正式表达式中的每个元素定义，以指定它是用户还是组（引擎无法猜测）。
+任务也可以放在人们所谓的**候选任务列表**中。 在这种情况下，必须使用**potentialOwner**构造。 用法类似于* humanPerformer *构造。 请注意，需要为正式表达式中的每个元素定义，以指定它是用户还是组（引擎无法猜测）。
 
 ```
 <process >
@@ -4180,29 +4180,29 @@ List<Task> tasks = taskService.createTaskQuery().taskAssignee("kermit").list();
 
 很明显，对于分配不复杂的用例而言，用户和组分配非常麻烦。 为避免这些复杂性，可以在用户任务上使用[自定义扩展]（https://www.activiti.org/userguide/#bpmnCustomExtensions）。
 
- -  **assignment属性**：此自定义扩展允许直接将用户任务分配给给定用户。
+ - **assignment属性**：此自定义扩展允许直接将用户任务分配给给定用户。
 
 ```
 <userTask id="theTask" name="my task" activiti:assignee="kermit" />
 ```
 
-这与使用上面定义的** humanPerformer **构造完全相同（https://www.activiti.org/userguide/#bpmnUserTaskAssignment）。
+这与使用上面定义的**humanPerformer**构造完全相同（https://www.activiti.org/userguide/#bpmnUserTaskAssignment）。
 
-- **candidateUsers attribute**: 此自定义扩展允许使用户成为任务的候选者。
+-**candidateUsers attribute**: 此自定义扩展允许使用户成为任务的候选者。
 
 ```
 <userTask id="theTask" name="my task" activiti:candidateUsers="kermit, gonzo" />
 ```
 
-这与使用上面定义的** potentialOwner **构造完全相同（https://www.activiti.org/userguide/#bpmnUserTaskAssignment）。 请注意，不需要像* potential owner *构造那样使用* user（kermit）*声明，因为该属性只能用于用户。
+这与使用上面定义的**potentialOwner**构造完全相同（https://www.activiti.org/userguide/#bpmnUserTaskAssignment）。 请注意，不需要像* potential owner *构造那样使用* user（kermit）*声明，因为该属性只能用于用户。
 
-- **candidateGroups attribute**: 此自定义扩展允许使组成为任务的候选者。
+-**candidateGroups attribute**: 此自定义扩展允许使组成为任务的候选者。
 
 ```
 <userTask id="theTask" name="my task" activiti:candidateGroups="management, accountancy" />
 ```
 
-这与使用上面定义的** potentialOwner **构造完全相同（https://www.activiti.org/userguide/#bpmnUserTaskAssignment）。 请注意，与* potential owner *构造一样，不需要使用* group（management）*声明，因为该属性只能用于组。
+这与使用上面定义的**potentialOwner**构造完全相同（https://www.activiti.org/userguide/#bpmnUserTaskAssignment）。 请注意，与* potential owner *构造一样，不需要使用* group（management）*声明，因为该属性只能用于组。
 
 - *candidateUsers* 和 *candidateGroups* can both be defined on the same user task.
 
@@ -4212,7 +4212,7 @@ List<Task> tasks = taskService.createTaskQuery().taskAssignee("kermit").list();
 
 [[EXPERIMENTAL\]](https://www.activiti.org/userguide/#experimental)
 
-The BPMN standard supports a single assigned user or **humanPerformer** or a set of users that form a potential pool of **potentialOwners**as defined in [User assignment](https://www.activiti.org/userguide/#bpmnUserTaskAssignment). In addition, Activiti defines [extension attribute elements](https://www.activiti.org/userguide/#bpmnUserTaskUserAssignmentExtension) for the User Task that can represent the task **assignee** or **candidate owner**.
+The BPMN standard supports a single assigned user or**humanPerformer**or a set of users that form a potential pool of**potentialOwners**as defined in [User assignment](https://www.activiti.org/userguide/#bpmnUserTaskAssignment). In addition, Activiti defines [extension attribute elements](https://www.activiti.org/userguide/#bpmnUserTaskUserAssignmentExtension) for the User Task that can represent the task**assignee**or**candidate owner**.
 
 The supported Activiti identity link types are:
 
@@ -4227,7 +4227,7 @@ public class IdentityLinkType {
 }
 ```
 
-BPMN标准和Activiti示例授权标识是** user **和** group **。 如上一节所述，Activiti身份管理实现不适用于生产用途，但应根据支持的授权方案进行扩展。
+BPMN标准和Activiti示例授权标识是**user**和**group**。 如上一节所述，Activiti身份管理实现不适用于生产用途，但应根据支持的授权方案进行扩展。
 
 如果需要其他链接类型，可以使用以下语法将自定义资源定义为扩展元素：
 
@@ -4360,7 +4360,7 @@ public class FakeLdapService {
 
 ##### XML representation
 
-通过指定**脚本**和** scriptFormat **来定义脚本任务。
+通过指定**脚本**和**scriptFormat**来定义脚本任务。
 
 ```
 <scriptTask id="theScriptTask" name="Execute script" scriptFormat="groovy">
@@ -4373,7 +4373,7 @@ public class FakeLdapService {
 </scriptTask>
 ```
 
-** scriptFormat **属性的值必须是与[JSR-223]兼容的名称（http://jcp.org/en/jsr/detail?id=223）（Java平台的脚本）。 默认情况下，JavaScript包含在每个JDK中，因此不需要任何其他jar。 如果要使用另一个（JSR-223兼容）脚本引擎，只需将相应的jar添加到类路径并使用适当的名称即可。 例如，Activiti单元测试通常使用Groovy，因为语法与Java非常相似。
+**scriptFormat**属性的值必须是与[JSR-223]兼容的名称（http://jcp.org/en/jsr/detail?id=223）（Java平台的脚本）。 默认情况下，JavaScript包含在每个JDK中，因此不需要任何其他jar。 如果要使用另一个（JSR-223兼容）脚本引擎，只需将相应的jar添加到类路径并使用适当的名称即可。 例如，Activiti单元测试通常使用Groovy，因为语法与Java非常相似。
 
 请注意，Groovy脚本引擎与groovy-all jar捆绑在一起。 在2.0版之前，脚本引擎是常规Groovy jar的一部分。 因此，现在必须添加以下依赖项：
 
@@ -4415,7 +4415,7 @@ public class FakeLdapService {
 </script>
 ```
 
-注意：以下名称是保留的，**不能用作变量名：** out，out：print，lang：import，context，elcontext **。
+注意：以下名称是保留的，**不能用作变量名：**out，out：print，lang：import，context，elcontext**。
 
 ##### Script results
 
@@ -4454,7 +4454,7 @@ Java服务任务用于调用外部Java类。
  - 调用方法表达式
  - 评估值表达式
 
-要指定在流程执行期间调用的类，需要由** activiti：class **属性提供完全限定的类名。
+要指定在流程执行期间调用的类，需要由**activiti：class**属性提供完全限定的类名。
 
 ```
 <serviceTask id="javaService"
@@ -4472,7 +4472,7 @@ Java服务任务用于调用外部Java类。
 
 这里，`delegateExpressionBean`是一个实现`JavaDelegate`接口的bean，在例如Spring容器中定义。
 
-要指定应评估的UEL方法表达式，请使用属性** activiti：expression **。
+要指定应评估的UEL方法表达式，请使用属性**activiti：expression**。
 
 ```
 <serviceTask id="javaService"
@@ -4492,7 +4492,7 @@ Java服务任务用于调用外部Java类。
 
 方法`printMessage`将在名为`printer`的对象上调用。 传递的第一个参数是`DelegateExecution`，它在表达式上下文中可用，默认情况下可用作`execution`。 传递的第二个参数是当前执行中名为`myVar`的变量的值。
 
-要指定应评估的UEL值表达式，请使用属性** activiti：expression **。
+要指定应评估的UEL值表达式，请使用属性**activiti：expression**。
 
 ```
 <serviceTask id="javaService"
@@ -4650,22 +4650,22 @@ public class ReverseStringsFieldInjected implements JavaDelegate {
 </serviceTask>
 ```
 
-此示例代码段有两个使用相同委托表达式的服务任务，但为* Expression *字段注入不同的值。 **如果表达式解析为同一个实例，则在执行进程时注入字段* someField *时，并发场景中可能存在竞争条件**。
+此示例代码段有两个使用相同委托表达式的服务任务，但为* Expression *字段注入不同的值。**如果表达式解析为同一个实例，则在执行进程时注入字段* someField *时，并发场景中可能存在竞争条件**。
 
 解决这个问题的最简单的解决方案是
 
 - 重写Java委托以使用表达式并通过方法参数将所需数据传递给委托。
-- 每次解析委托表达式时，返回委托类的新实例。例如，当使用Spring时，这意味着bean的范围必须设置为** prototype **（例如，通过将@Scope（SCOPE_PROTOTYPE）注释添加到委托类）
+- 每次解析委托表达式时，返回委托类的新实例。例如，当使用Spring时，这意味着bean的范围必须设置为**prototype**（例如，通过将@Scope（SCOPE_PROTOTYPE）注释添加到委托类）
 
 从Activiti版本5.21开始，可以通过设置* delegateExpressionFieldInjectionMode *属性的值（它采用* org.activiti中的一个值）来配置流程引擎配置，以禁用在委托epxressions上使用字段注入。 .engine.imp.cfg.DelegateExpressionFieldInjectionMode * enum）。
 
 可以进行以下设置：
 
-- ** DISABLED **：使用委托表达式时完全禁用字段注入。不会尝试进行现场注入。在线程安全方面，这是最安全的模式。
-- **兼容性**：在此模式下，行为将与5.21之前的行为完全相同：使用委托表达式时可以进行字段注入，并且在委托类中未定义字段时将引发异常。这当然是线程安全方面最不安全的模式，但它可能需要向后兼容，或者当委托表达式仅用于一组进程定义中的一个任务时可以安全使用（因此没有并发竞争）条件可能发生）。
-- ** MIXED **：允许在使用delegateExpressions时进行注入，但在委托中未定义字段时不会引发异常。这允许混合行为，其中一些代表注入（例如因为他们不是单身人士）而有些则没有。
-- ** Activiti 5.x版的默认模式是兼容性。**
-- ** Activiti版本6.x的默认模式为MIXED。**
+-**DISABLED**：使用委托表达式时完全禁用字段注入。不会尝试进行现场注入。在线程安全方面，这是最安全的模式。
+-**兼容性**：在此模式下，行为将与5.21之前的行为完全相同：使用委托表达式时可以进行字段注入，并且在委托类中未定义字段时将引发异常。这当然是线程安全方面最不安全的模式，但它可能需要向后兼容，或者当委托表达式仅用于一组进程定义中的一个任务时可以安全使用（因此没有并发竞争）条件可能发生）。
+-**MIXED**：允许在使用delegateExpressions时进行注入，但在委托中未定义字段时不会引发异常。这允许混合行为，其中一些代表注入（例如因为他们不是单身人士）而有些则没有。
+-**Activiti 5.x版的默认模式是兼容性。**
+-**Activiti版本6.x的默认模式为MIXED。**
 
 例如，假设我们正在使用* MIXED *模式，我们正在使用Spring集成。假设我们在Spring配置中有以下bean：
 
@@ -4779,12 +4779,12 @@ public class SingletonDelegateExpressionBean implements JavaDelegate {
 
 * INSTANCE_COUNT *将始终为* * *，因为它是单身。在此委托中，没有* Expression *成员字段。这是可能的，因为我们正在以* MIXED *模式运行。在* COMPATIBILITY *模式下，这将抛出异常，因为它期望成员字段在那里。 * DISABLED *模式也适用于这个bean，但它不允许使用上面的原型bean，它确实使用了字段注入。
 
-在这个委托代码中，使用了** org.activiti.engine.delegate.DelegateHelper **类，它有一些有用的实用程序方法来执行相同的逻辑，但是当委托是单例时以线程安全的方式。它不是注入* Expression *，而是通过* getFieldExpression *方法获取。这意味着当涉及到服务任务xml时，字段的定义与单例bean的定义完全相同。如果你看一下上面的xml片段，你可以看到它们在定义上是相同的，只有实现逻辑不同。
+在这个委托代码中，使用了**org.activiti.engine.delegate.DelegateHelper**类，它有一些有用的实用程序方法来执行相同的逻辑，但是当委托是单例时以线程安全的方式。它不是注入* Expression *，而是通过* getFieldExpression *方法获取。这意味着当涉及到服务任务xml时，字段的定义与单例bean的定义完全相同。如果你看一下上面的xml片段，你可以看到它们在定义上是相同的，只有实现逻辑不同。
 
 （技术说明：* getFieldExpression *将内省BpmnModel并在执行方法时动态创建Expression，使其成为线程安全的）
 
 - 对于Activiti 5.x版，DelegateHelper不能用于* ExecutionListener *或* TaskListener *（由于架构缺陷）。要创建这些侦听器的线程安全实例，请使用表达式或确保每次解析委托表达式时都会创建新实例。
-- 对于Activiti版本6.x，DelegateHelper可以在* ExecutionListener *和* TaskListener *实现中工作。例如，在版本6.x中，可以使用** DelegateHelper **编写以下代码：
+- 对于Activiti版本6.x，DelegateHelper可以在* ExecutionListener *和* TaskListener *实现中工作。例如，在版本6.x中，可以使用**DelegateHelper**编写以下代码：
 
 ```
 <extensionElements>
@@ -5167,7 +5167,7 @@ Web Service任务可视化与Java服务任务相同。
 
 #### 8.5.6. Email Task
 
-Activiti允许通过向一个或多个收件人发送电子邮件的自动邮件服务任务来增强业务流程，包括支持cc，bcc，HTML内容......等。请注意，邮件任务不是** *官方* BPMN 2.0规范的任务（因此它没有专用的图标）。 因此，在Activiti中，邮件任务被实现为专用服务任务。
+Activiti允许通过向一个或多个收件人发送电子邮件的自动邮件服务任务来增强业务流程，包括支持cc，bcc，HTML内容......等。请注意，邮件任务不是***官方* BPMN 2.0规范的任务（因此它没有专用的图标）。 因此，在Activiti中，邮件任务被实现为专用服务任务。
 
 ##### Mail server configuration
 
@@ -5245,7 +5245,7 @@ Activiti引擎通过具有SMTP功能的外部邮件服务器发送电子邮件�
 
 #### 8.5.7. Mule Task
 
-mule任务允许向Mule发送消息，增强Activiti的集成功能。 请注意，mule任务不是BPMN 2.0规范的** * *官方*任务（因此它没有专用图标）。 因此，在Activiti中，mule任务被实现为专用服务任务。
+mule任务允许向Mule发送消息，增强Activiti的集成功能。 请注意，mule任务不是BPMN 2.0规范的*** *官方*任务（因此它没有专用图标）。 因此，在Activiti中，mule任务被实现为专用服务任务。
 
 ##### Defining an Mule Task
 
@@ -5287,7 +5287,7 @@ Mule任务由[field injection]（https://www.activiti.org/userguide/#serviceTask
 
 #### 8.5.8. Camel Task
 
-Camel任务允许向Camel发送消息和从Camel接收消息，从而增强了Activiti的集成功能。 请注意，Camel任务不是BPMN 2.0规范的** * *官方*任务（因此它没有专用图标）。 因此，在Activiti中，Camel任务被实现为专用服务任务。 另请注意，在项目中包含Activiti Camel模块以使用Camel任务功能。
+Camel任务允许向Camel发送消息和从Camel接收消息，从而增强了Activiti的集成功能。 请注意，Camel任务不是BPMN 2.0规范的*** *官方*任务（因此它没有专用图标）。 因此，在Activiti中，Camel任务被实现为专用服务任务。 另请注意，在项目中包含Activiti Camel模块以使用Camel任务功能。
 
 ##### Defining a Camel Task
 
@@ -5553,7 +5553,7 @@ runtimeService.signal(execution.getId());
 
 ##### Description
 
-shell任务允许运行shell脚本和命令。 请注意，Shell任务不是** * BPMN 2.0规范的*官方*任务（因此它没有专用图标）。
+shell任务允许运行shell脚本和命令。 请注意，Shell任务不是*** BPMN 2.0规范的*官方*任务（因此它没有专用图标）。
 
 ##### Defining a shell task
 
@@ -5654,7 +5654,7 @@ public class ExampleExecutionListenerOne implements ExecutionListener {
 
 也可以使用实现`org.activiti.engine.delegate.JavaDelegate`接口的委托类。 然后可以在其他构造中重用这些委托类，例如serviceTask的委托。
 
-执行转换时将调用第二个执行侦听器。 请注意，`listener`元素没有定义`event`，因为只有`take`事件在转换时触发。 **在转换上定义侦听器时，将忽略event属性中的值。**
+执行转换时将调用第二个执行侦听器。 请注意，`listener`元素没有定义`event`，因为只有`take`事件在转换时触发。**在转换上定义侦听器时，将忽略event属性中的值。**
 
 当活动“secondTask”结束时，将调用最后一个执行侦听器。 而不是在侦听器声明中使用`class`，而是定义`expression`，而不是在触发事件时评估/调用它。
 
@@ -5760,12 +5760,12 @@ A * task listener *用于在发生某个与任务相关的事件时执行自定�
 
 *任务侦听器*支持以下属性：
 
-- ** event **（必需）：将在其上调用任务侦听器的任务事件的类型。可能的事件是
-   - ** create **：在创建任务时发生**所有任务属性都设置**。
-   - **赋值**：当任务分配给某人时发生。注意：当进程执行到达userTask时，首先会触发* assignment *事件，**之前** * create *事件被触发。这似乎是一种不自然的顺序，但原因是务实的：当收到* create *事件时，我们通常要检查任务的所有属性，包括受让人。
-   - **完成**：在任务完成时以及从运行时数据中删除任务之前发生。
-   - **删除**：在删除任务之前发生。请注意，当通过completeTask正常完成任务时也会执行它。
-- ** class **：必须调用的委托类。该类必须实现`org.activiti.engine.delegate.TaskListener`接口。
+-**event**（必需）：将在其上调用任务侦听器的任务事件的类型。可能的事件是
+   -**create**：在创建任务时发生**所有任务属性都设置**。
+   -**赋值**：当任务分配给某人时发生。注意：当进程执行到达userTask时，首先会触发* assignment *事件，**之前*** create *事件被触发。这似乎是一种不自然的顺序，但原因是务实的：当收到* create *事件时，我们通常要检查任务的所有属性，包括受让人。
+   -**完成**：在任务完成时以及从运行时数据中删除任务之前发生。
+   -**删除**：在删除任务之前发生。请注意，当通过completeTask正常完成任务时也会执行它。
+-**class**：必须调用的委托类。该类必须实现`org.activiti.engine.delegate.TaskListener`接口。
 
 ```
 public class MyTaskCreateListener implements TaskListener {
@@ -5779,13 +5779,13 @@ public class MyTaskCreateListener implements TaskListener {
 
 也可以使用[field injection]（https://www.activiti.org/userguide/#serviceTaskFieldInjection）将流程变量或执行传递给委托类。 请注意，在进程部署时会创建委托类的实例（与Activiti中的任何类委派一样），这意味着实例在所有流程实例执行之间共享。
 
- -  ** expression ** :(不能与* class *属性一起使用）：指定将在事件发生时执行的表达式。 可以将`DelegateTask`对象和事件名称（使用`task.eventName`）作为参数传递给被调用对象。
+ - **expression**:(不能与* class *属性一起使用）：指定将在事件发生时执行的表达式。 可以将`DelegateTask`对象和事件名称（使用`task.eventName`）作为参数传递给被调用对象。
 
 ```
 <activiti:taskListener event="create" expression="${myObject.callMethod(task, task.eventName)}" />
 ```
 
- - ** delegateExpression **允许指定一个解析为实现`TaskListener`接口的对象的表达式，[类似于服务任务]（https://www.activiti.org/userguide/#bpmnJavaServiceTaskXML）。
+ -**delegateExpression**允许指定一个解析为实现`TaskListener`接口的对象的表达式，[类似于服务任务]（https://www.activiti.org/userguide/#bpmnJavaServiceTaskXML）。
 ```
 <activiti:taskListener event="create" delegateExpression="${myTaskListenerBean}" />
 ```
@@ -5826,19 +5826,19 @@ public class MyTaskCreateListener implements TaskListener {
 - [(Embedded) Sub-Process](https://www.activiti.org/userguide/#bpmnSubProcess)
 - [Call Activity](https://www.activiti.org/userguide/#bpmnCallActivity)
 
-A [Gateway](https://www.activiti.org/userguide/#bpmnGateways) or [Event](https://www.activiti.org/userguide/#bpmnEvents) **cannot** become multi-instance.
+A [Gateway](https://www.activiti.org/userguide/#bpmnGateways) or [Event](https://www.activiti.org/userguide/#bpmnEvents)**cannot**become multi-instance.
 
 As required by the spec, each parent execution of the created executions for each instance will have following variables:
 
-- **nrOfInstances**: the total number of instances
-- **nrOfActiveInstances**: the number of currently active, i.e. not yet finished, instances. For a sequential multi-instance, this will always be 1.
-- **nrOfCompletedInstances**: the number of already completed instances.
+-**nrOfInstances**: the total number of instances
+-**nrOfActiveInstances**: the number of currently active, i.e. not yet finished, instances. For a sequential multi-instance, this will always be 1.
+-**nrOfCompletedInstances**: the number of already completed instances.
 
 These values can be retrieved by calling the `execution.getVariable(x)` method.
 
 Additionally, each of the created executions will have an execution-local variable (i.e. not visible for the other executions, and not stored on process instance level) :
 
-- **loopCounter**: indicates the *index in the for-each loop* of that particular instance. loopCounter variable can be renamed by Activiti **elementIndexVariable** attribute.
+-**loopCounter**: indicates the *index in the for-each loop* of that particular instance. loopCounter variable can be renamed by Activiti**elementIndexVariable**attribute.
 
 ##### Graphical notation
 
@@ -5856,9 +5856,9 @@ Additionally, each of the created executions will have an execution-local variab
 </multiInstanceLoopCharacteristics>
 ```
 
-** isSequential **属性指示该活动的实例是顺序执行还是并行执行。
+**isSequential**属性指示该活动的实例是顺序执行还是并行执行。
 
-进入活动**时，实例数量**计算一次。 有几种配置方法。 正在使用** loopCardinality **子元素直接指定一个数字。
+进入活动**时，实例数量**计算一次。 有几种配置方法。 正在使用**loopCardinality**子元素直接指定一个数字。
 
 ```
 <multiInstanceLoopCharacteristics isSequential="false|true">
@@ -5887,7 +5887,7 @@ Another way to define the number of instances, is to specify the name of a proce
 
 Suppose the variable `assigneeList` contains the values `\[kermit, gonzo, fozzie\]`. In the snippet above, three user tasks will be created in parallel. Each of the executions will have a process variable named `assignee` containing one value of the collection, which is used to assign the user task in this example.
 
-The downside of the `loopDataInputRef` and `inputDataItem` is that 1) the names are pretty hard to remember and 2) due to the BPMN 2.0 schema restrictions they can’t contain expressions. Activiti solves this by offering the **collection** and **elementVariable**attributes on the `multiInstanceCharacteristics`:
+The downside of the `loopDataInputRef` and `inputDataItem` is that 1) the names are pretty hard to remember and 2) due to the BPMN 2.0 schema restrictions they can’t contain expressions. Activiti solves this by offering the**collection**and**elementVariable**attributes on the `multiInstanceCharacteristics`:
 
 ```
 <userTask id="miTasks" name="My Task" activiti:assignee="${assignee}">
@@ -5897,7 +5897,7 @@ The downside of the `loopDataInputRef` and `inputDataItem` is that 1) the names 
 </userTask>
 ```
 
-A multi-instance activity ends when all instances are finished. However, it is possible to specify an expression that is evaluated every time one instance ends. When this expression evaluates to true, all remaining instances are destroyed and the multi-instance activity ends, continuing the process. Such an expression must be defined in the **completionCondition** child element.
+A multi-instance activity ends when all instances are finished. However, it is possible to specify an expression that is evaluated every time one instance ends. When this expression evaluates to true, all remaining instances are destroyed and the multi-instance activity ends, continuing the process. Such an expression must be defined in the**completionCondition**child element.
 
 ```
 <userTask id="miTasks" name="My Task" activiti:assignee="${assignee}">
@@ -5912,7 +5912,7 @@ In this example, there will be parallel instances created for each element of th
 
 ##### Boundary events and multi-instance
 
-Since a multi-instance is a regular activity, it is possible to define a [boundary event](https://www.activiti.org/userguide/#bpmnBoundaryEvent) on its boundary. In case of an interrupting boundary event, when the event is caught, **all instances** that are still active will be destroyed. Take for example following multi-instance subprocess:
+Since a multi-instance is a regular activity, it is possible to define a [boundary event](https://www.activiti.org/userguide/#bpmnBoundaryEvent) on its boundary. In case of an interrupting boundary event, when the event is caught,**all instances**that are still active will be destroyed. Take for example following multi-instance subprocess:
 
 ![bpmn.multi.instance.boundary.event](https://www.activiti.org/userguide/images/bpmn.multi.instance.boundary.event.png)
 
@@ -6006,13 +6006,13 @@ A *Sub-Process* is an activity that contains other activities, gateways, events,
 
 Sub-Processes have two major use cases:
 
-- Sub-Processes allow **hierarchical modeling**. Many modeling tools allow that Sub-Processes can be *collapsed*, hiding all the details of the Sub-Process and displaying a high-level end-to-end overview of the business process.
-- A Sub-Process creates a new **scope for events**. Events that are thrown during execution of the Sub-Process, can be caught by [a boundary event](https://www.activiti.org/userguide/#bpmnBoundaryEvent) on the boundary of the Sub-Process, thus creating a scope for that event limited to the Sub-Process.
+- Sub-Processes allow**hierarchical modeling**. Many modeling tools allow that Sub-Processes can be *collapsed*, hiding all the details of the Sub-Process and displaying a high-level end-to-end overview of the business process.
+- A Sub-Process creates a new**scope for events**. Events that are thrown during execution of the Sub-Process, can be caught by [a boundary event](https://www.activiti.org/userguide/#bpmnBoundaryEvent) on the boundary of the Sub-Process, thus creating a scope for that event limited to the Sub-Process.
 
 Using a Sub-Process does impose some constraints:
 
-- A Sub-Process can only have **one none start event**, no other start event types are allowed. A Sub-Process must **at least have one end event**. Note that the BPMN 2.0 specification allows to omit the start and end events in a Sub-Process, but the current Activiti implementation does not support this.
-- **Sequence flow cannot cross Sub-Process boundaries.**
+- A Sub-Process can only have**one none start event**, no other start event types are allowed. A Sub-Process must**at least have one end event**. Note that the BPMN 2.0 specification allows to omit the start and end events in a Sub-Process, but the current Activiti implementation does not support this.
+-**Sequence flow cannot cross Sub-Process boundaries.**
 
 ##### Graphical Notation
 
@@ -6058,7 +6058,7 @@ A Sub-Process is defined by the *subprocess* element. All activities, gateways, 
 
  -  Activiti仅支持中断事件子进程。
  -  Activiti仅支持使用错误启动事件或消息启动事件触发的事件子流程。
- 
+
 ##### Graphical Notation
 
 可以将事件子流程可视化为具有虚线轮廓的[嵌入式子流程]（https://www.activiti.org/userguide/#bpmnSubProcessGraphicalNotation）。
@@ -6124,7 +6124,7 @@ An Event Sub-Process is represented using XML in the same way as a an embedded s
 
 - BPMN规范要求流程引擎对底层事务协议发出的事件作出反应，例如，如果底层协议中发生取消事件，则取消事务。作为可嵌入引擎，Activiti目前不支持此功能。 （有关此问题的一些后果，请参见下文关于一致性的段落。）
 
-**在ACID事务和乐观并发之上的一致性：** bpmn事务保证一致性，即所有活动都成功竞争，或者如果某些活动无法执行，所有其他成功活动的效果都会得到补偿。所以无论哪种方式，我们最终都处于一致的状态。但是，重要的是要认识到在Activiti中，bpmn事务的一致性模型叠加在流程执行的一致性模型之上。 Activiti以事务方式执行进程。使用乐观锁定解决并发问题。在Activiti中，bpmn错误，取消和补偿事件建立在相同的酸交易和乐观锁定之上。例如，取消结束事件只能在实际到达时触发补偿。如果之前的服务任务抛出了一些未声明的异常，则无法到达。或者，如果基础ACID事务中的某个其他参与者将事务设置为仅回滚状态，则无法提交补偿处理程序的效果。或者，当两个并发执行到达取消结束事件时，补偿可能会被触发两次，并且会因乐观锁定异常而失败。所有这一切都是说在Activiti中实现bpmn事务时，同样的规则集适用于实现“普通”进程和子进程时。因此，为了有效地保证一致性，以一种确实考虑乐观的事务执行模型的方式实现流程非常重要。
+**在ACID事务和乐观并发之上的一致性：**bpmn事务保证一致性，即所有活动都成功竞争，或者如果某些活动无法执行，所有其他成功活动的效果都会得到补偿。所以无论哪种方式，我们最终都处于一致的状态。但是，重要的是要认识到在Activiti中，bpmn事务的一致性模型叠加在流程执行的一致性模型之上。 Activiti以事务方式执行进程。使用乐观锁定解决并发问题。在Activiti中，bpmn错误，取消和补偿事件建立在相同的酸交易和乐观锁定之上。例如，取消结束事件只能在实际到达时触发补偿。如果之前的服务任务抛出了一些未声明的异常，则无法到达。或者，如果基础ACID事务中的某个其他参与者将事务设置为仅回滚状态，则无法提交补偿处理程序的效果。或者，当两个并发执行到达取消结束事件时，补偿可能会被触发两次，并且会因乐观锁定异常而失败。所有这一切都是说在Activiti中实现bpmn事务时，同样的规则集适用于实现“普通”进程和子进程时。因此，为了有效地保证一致性，以一种确实考虑乐观的事务执行模型的方式实现流程非常重要。
 
 ##### Graphical Notation
 
@@ -6166,7 +6166,7 @@ BPMN 2.0区分常规*子进程*（通常也称为*嵌入式子进程*）和调�
 
 ##### XML representation
 
-调用活动是一个常规活动，需要一个* calledElement *，它通过**键**引用流程定义。 实际上，这意味着进程**的** id用于* calledElement *。
+调用活动是一个常规活动，需要一个* calledElement *，它通过**键**引用流程定义。 实际上，这意味着进程**的**id用于* calledElement *。
 
 ```
 <callActivity id="callCheckCreditProcess" name="Check credit" calledElement="checkCreditProcess" />
@@ -6416,7 +6416,7 @@ Activiti提供了一种方便灵活的方式来为业务流程的手动步骤添
 
 启动流程并完成用户任务是人们参与流程的地方。与人沟通需要在某些UI技术中呈现表单。为了简化多个UI技术，流程定义可以包括将流程变量中复杂的Java类型对象转换为**属性**的“Map <String，String>”的逻辑。
 
-然后，任何UI技术都可以使用公开属性信息的Activiti API方法在这些属性之上构建表单。这些属性可以为过程变量提供专用（且更有限）的视图。显示表单所需的属性可在** FormData **返回值中获得
+然后，任何UI技术都可以使用公开属性信息的Activiti API方法在这些属性之上构建表单。这些属性可以为过程变量提供专用（且更有限）的视图。显示表单所需的属性可在**FormData**返回值中获得
 
 ```
 StartFormData FormService.getStartFormData(String processDefinitionId)
@@ -6484,21 +6484,21 @@ formService.getStartFormData(String processDefinitionId).getFormProperties()
 
 ```
 public interface FormProperty {
-  /** the key used to submit the property in {@link FormService#submitStartFormData(String, java.util.Map)}
+  /**the key used to submit the property in {@link FormService#submitStartFormData(String, java.util.Map)}
    * or {@link FormService#submitTaskFormData(String, java.util.Map)} */
   String getId();
-  /** the display label */
+  /**the display label */
   String getName();
-  /** one of the types defined in this interface like e.g. {@link #TYPE_STRING} */
+  /**one of the types defined in this interface like e.g. {@link #TYPE_STRING} */
   FormType getType();
-  /** optional value that should be used to display in this property */
+  /**optional value that should be used to display in this property */
   String getValue();
-  /** is this property read to be displayed in the form and made accessible with the methods
+  /**is this property read to be displayed in the form and made accessible with the methods
    * {@link FormService#getStartFormData(String)} and {@link FormService#getTaskFormData(String)}. */
   boolean isReadable();
-  /** is this property expected when a user submits the form? */
+  /**is this property expected when a user submits the form? */
   boolean isWritable();
-  /** is this property a required input field */
+  /**is this property a required input field */
   boolean isRequired();
 }
 ```
@@ -6712,7 +6712,7 @@ assertEquals("updatedValue", ((FieldAccessJPAEntity)updatedEntity).getValue());
 
 #### 10.3.2. Query JPA process variables
 
-您可以查询具有某个JPA实体作为变量值的`ProcessInstance`s和`Execution`s。 **请注意，ProcessInstanceQuery和ExecutionQuery **上的JPA-Entities支持onlyvariableValueEquals（name，entity）。 方法`variableValueNotEquals`，`variableValueGreaterThan`，`variableValueGreaterThanOrEqual`，`variableValueLessThan`和`variableValueLessThanOrEqual`不受支持，并且当JPA-Entity作为值传递时将抛出`ActivitiException`。
+您可以查询具有某个JPA实体作为变量值的`ProcessInstance`s和`Execution`s。**请注意，ProcessInstanceQuery和ExecutionQuery**上的JPA-Entities支持onlyvariableValueEquals（name，entity）。 方法`variableValueNotEquals`，`variableValueGreaterThan`，`variableValueGreaterThanOrEqual`，`variableValueLessThan`和`variableValueLessThanOrEqual`不受支持，并且当JPA-Entity作为值传递时将抛出`ActivitiException`。
 
 ```
 ProcessInstance result = runtimeService.createProcessInstanceQuery()
@@ -6961,7 +6961,7 @@ Activiti附带一个Eclipse插件，即Activiti Eclipse Designer，可用于以�
 
 ![designer.add.update.site](https://www.activiti.org/userguide/images/designer.add.update.site.png)
 
-确保**“联系所有更新站点...”**复选框** ** **，因为Eclipse将下载所有必需的插件。
+确保**“联系所有更新站点...”**复选框******，因为Eclipse将下载所有必需的插件。
 
 ### 12.2. Activiti Designer editor features
 
@@ -7051,7 +7051,7 @@ Activiti附带一个Eclipse插件，即Activiti Eclipse Designer，可用于以�
 
 现在可以使用Activiti Explorer中的部署选项卡将此文件上载到Activiti Engine，您就可以开始使用了。
 
-当您的项目包含Java类时，部署需要更多工作。 在这种情况下，Activiti Designer中的** Create deployment artifacts **步骤也将生成一个包含已编译类的JAR文件。 必须将此JAR文件部署到Activiti Tomcat安装目录中的activiti-XXX / WEB-INF / lib目录。 这使得类在Activiti Engine的类路径上可用。
+当您的项目包含Java类时，部署需要更多工作。 在这种情况下，Activiti Designer中的**Create deployment artifacts**步骤也将生成一个包含已编译类的JAR文件。 必须将此JAR文件部署到Activiti Tomcat安装目录中的activiti-XXX / WEB-INF / lib目录。 这使得类在Activiti Engine的类路径上可用。
 
 ### 12.5. Extending Activiti Designer
 
@@ -7604,7 +7604,7 @@ Activiti REST Web应用程序使用Spring Java Configuration启动Activiti Engin
 
 **遇到意外的400结果遇到问题时，请设置以下system-property：-Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH = true。**
 
-最好的做法是始终在下面描述的HTTP请求中将** Accept **和** Content-Type **（如果发布/放置JSON）标头设置为** application / json **。
+最好的做法是始终在下面描述的HTTP请求中将**Accept**和**Content-Type**（如果发布/放置JSON）标头设置为**application / json**。
 
 #### 13.1.4. Methods and return-codes
 
@@ -7692,7 +7692,7 @@ Activiti REST Web应用程序使用Spring Java Configuration启动Activiti Engin
 
 | Parameter | Required | Description                                                  |
 | --------- | -------- | ------------------------------------------------------------ |
-| name      | No       | Name of the variable to include in a query. Can be empty in case *equals* is used in some queries to query for resources that have **any variable name** with the given value. |
+| name      | No       | Name of the variable to include in a query. Can be empty in case *equals* is used in some queries to query for resources that have**any variable name**with the given value. |
 | value     | Yes      | Value of the variable included in the query, should include a correct format for the given type. |
 | operator  | Yes      | Operator to use in query, can have the following values: `equals, notEquals, equalsIgnoreCase, notEqualsIgnoreCase, lessThan, greaterThan, lessThanOrEquals, greaterThanOrEquals` and `like`. |
 | type      | No       | Type of variable to use. When omitted, the type will be deducted from the `value`parameter. Any JSON text-values will be considered of type `string`, JSON booleans of type `boolean`, JSON numbers of type `long` or `integer`depending on the size of the number. It’s recommended to include an explicit type when in doubt. Types supported out of the box are listed below. |
@@ -7916,7 +7916,7 @@ GET repository/deployments/{deploymentId}/resources/{resourceId}
 | Parameter    | Required | Value  | Description                                                  |
 | ------------ | -------- | ------ | ------------------------------------------------------------ |
 | deploymentId | Yes      | String | The id of the deployment the requested resource is part of.  |
-| resourceId   | Yes      | String | The id of the resource to get. **Make sure you URL-encode the resourceId in case it contains forward slashes. Eg: use diagrams%2Fmy-process.bpmn20.xml instead of diagrams/Fmy-process.bpmn20.xml.** |
+| resourceId   | Yes      | String | The id of the resource to get.**Make sure you URL-encode the resourceId in case it contains forward slashes. Eg: use diagrams%2Fmy-process.bpmn20.xml instead of diagrams/Fmy-process.bpmn20.xml.**|
 
 | Response code | Description                                                  |
 | ------------- | ------------------------------------------------------------ |
@@ -7950,7 +7950,7 @@ GET repository/deployments/{deploymentId}/resourcedata/{resourceId}
 | Parameter    | Required | Value  | Description                                                  |
 | ------------ | -------- | ------ | ------------------------------------------------------------ |
 | deploymentId | Yes      | String | The id of the deployment the requested resource is part of.  |
-| resourceId   | Yes      | String | The id of the resource to get the data for. **Make sure you URL-encode the resourceId in case it contains forward slashes. Eg: usediagrams%2Fmy-process.bpmn20.xml instead of diagrams/Fmy-process.bpmn20.xml.** |
+| resourceId   | Yes      | String | The id of the resource to get the data for.**Make sure you URL-encode the resourceId in case it contains forward slashes. Eg: usediagrams%2Fmy-process.bpmn20.xml instead of diagrams/Fmy-process.bpmn20.xml.**|
 
 ```
 .Get a deployment resource content - Response codes
@@ -8090,7 +8090,7 @@ PUT repository/process-definitions/{processDefinitionId}
 | 400           | Indicates no category was defined in the request body.    |
 | 404           | Indicates the requested process definition was not found. |
 
-**Success response body:** see response for `repository/process-definitions/{processDefinitionId}`.
+**Success response body:**see response for `repository/process-definitions/{processDefinitionId}`.
 
 #### 13.3.4. Get a process definition resource content
 
@@ -8169,7 +8169,7 @@ PUT repository/process-definitions/{processDefinitionId}
 | 404           | Indicates the requested process definition was not found.    |
 | 409           | Indicates the requested process definition is already suspended. |
 
-**Success response body:** see response for `repository/process-definitions/{processDefinitionId}`.
+**Success response body:**see response for `repository/process-definitions/{processDefinitionId}`.
 
 #### 13.3.7. Activate a process definition
 
@@ -8195,7 +8195,7 @@ See suspend process definition [JSON Body parameters](https://www.activiti.org/u
 | 404           | Indicates the requested process definition was not found.    |
 | 409           | Indicates the requested process definition is already active. |
 
-**Success response body:** see response for `repository/process-definitions/{processDefinitionId}`.
+**Success response body:**see response for `repository/process-definitions/{processDefinitionId}`.
 
 #### 13.3.8. Get all candidate starters for a process-definition
 
@@ -9227,7 +9227,7 @@ PUT runtime/process-instances/{processInstanceId}/variables
 | ----------------- | -------- | ------ | ------------------------------------------------------------ |
 | processInstanceId | Yes      | String | The id of the process instance to create the new variable for. |
 
-**Request body:** 请求应为`multipart / form-data`类型。 应该有一个文件部分包含在变量的二进制值中。 最重要的是，可以存在以下附加表单字段：
+**Request body:**请求应为`multipart / form-data`类型。 应该有一个文件部分包含在变量的二进制值中。 最重要的是，可以存在以下附加表单字段：
 
  - `name`：变量的必需名称。
  - `type`：创建的变量类型。 如果省略，则假定为“binary”，请求中的二进制数据将存储为字节数组。
@@ -9744,7 +9744,7 @@ PUT runtime/executions/{executionId}/variables/{variableName}
 | executionId  | Yes      | String | The id of the execution to create the new variable for. |
 | variableName | Yes      | String | The name of the variable to update.                     |
 
-**Request body:** 请求应为`multipart / form-data`类型。 应该有一个文件部分包含在变量的二进制值中。 最重要的是，可以存在以下附加表单字段：
+**Request body:**请求应为`multipart / form-data`类型。 应该有一个文件部分包含在变量的二进制值中。 最重要的是，可以存在以下附加表单字段：
 
  - `name`：变量的必需名称。
  - `type`：创建的变量类型。 如果省略，则假定为“binary”，请求中的二进制数据将存储为字节数组。
@@ -10006,7 +10006,7 @@ PUT runtime/tasks/{taskId}
 | 404           | Indicates the requested task was not found.              |
 | 409           | Indicates the requested task was updated simultaneously. |
 
-**Success response body:** see response for `runtime/tasks/{taskId}`.
+**Success response body:**see response for `runtime/tasks/{taskId}`.
 
 #### 13.7.5. Task actions
 
@@ -10066,7 +10066,7 @@ POST runtime/tasks/{taskId}
 | 404           | Indicates the requested task was not found.                  |
 | 409           | Indicates the action cannot be performed due to a conflict. Either the task was updates simultaneously or the task was claimed by another user, in case of the *claim* action. |
 
-**Success response body:** see response for `runtime/tasks/{taskId}`.
+**Success response body:**see response for `runtime/tasks/{taskId}`.
 
 #### 13.7.6. Delete a task
 
@@ -12532,7 +12532,7 @@ PUT identity/users/{userId}
 | 404           | Indicates the requested user was not found.              |
 | 409           | Indicates the requested user was updated simultaneously. |
 
-**Success response body:** see response for `identity/users/{userId}`.
+**Success response body:**see response for `identity/users/{userId}`.
 
 #### 13.14.4. Create a user
 
@@ -12557,7 +12557,7 @@ POST identity/users
 | 201           | Indicates the user was created.           |
 | 400           | Indicates the id of the user was missing. |
 
-**Success response body:** see response for `identity/users/{userId}`.
+**Success response body:**see response for `identity/users/{userId}`.
 
 #### 13.14.5. Delete a user
 
@@ -12848,7 +12848,7 @@ PUT identity/groups/{groupId}
 | 404           | Indicates the requested group was not found.              |
 | 409           | Indicates the requested group was updated simultaneously. |
 
-**Success response body:** see response for `identity/groups/{groupId}`.
+**Success response body:**see response for `identity/groups/{groupId}`.
 
 #### 13.15.4. Create a group
 
@@ -12871,7 +12871,7 @@ POST identity/groups
 | 201           | Indicates the group was created.           |
 | 400           | Indicates the id of the group was missing. |
 
-**Success response body:** see response for `identity/groups/{groupId}`.
+**Success response body:**see response for `identity/groups/{groupId}`.
 
 #### 13.15.5. Delete a group
 
@@ -13957,7 +13957,7 @@ public class ProcessDefinitionCacheConfigurator extends AbstractProcessEngineCon
 }
 ```
 
-也可以使用[ServiceLoader]（http://docs.oracle.com/javase/7/docs/api/java/util/ServiceLoader.html）方法从类路径中自动发现Process Engine配置程序。 这意味着必须将具有配置程序实现的jar放在类路径上，该文件包含名为** org.activiti.engine.cfg.ProcessEngineConfigurator **的jar中的* META-INF / services *文件夹中的文件。 文件的内容必须是自定义实现的完全限定类名。 引导流程引擎时，日志记录将显示找到这些配置程序：
+也可以使用[ServiceLoader]（http://docs.oracle.com/javase/7/docs/api/java/util/ServiceLoader.html）方法从类路径中自动发现Process Engine配置程序。 这意味着必须将具有配置程序实现的jar放在类路径上，该文件包含名为**org.activiti.engine.cfg.ProcessEngineConfigurator**的jar中的* META-INF / services *文件夹中的文件。 文件的内容必须是自定义实现的完全限定类名。 引导流程引擎时，日志记录将显示找到这些配置程序：
 
 ```
 INFO  org.activiti.engine.impl.cfg.ProcessEngineConfigurationImpl  - Found 1 auto-discoverable Process Engine Configurators
@@ -14174,12 +14174,12 @@ processEngineConfig.addConfigurator(configurator);
 
 可以进行以下设置：
 
-- ** enableClassWhiteListing **：当为true时，所有类都将被列入黑名单，并且所有想要使用的类都需要单独列入白名单。这样可以严格控制脚本的内容。默认情况下* false *。
-- ** whiteListedClasses **：一组字符串，对应于允许在脚本中使用的类的完全限定类名。例如，要在脚本中公开* execution *对象，需要将* org.activiti.engine.impl.persistence.entity.ExecutionEntityImpl * String添加到此Set中。默认情况下*空*。
-- ** maxStackDepth **：在脚本中调用函数时限制堆栈深度。这可用于避免在递归调用脚本中定义的方法时发生的stackoverflow异常。默认情况下* -1 *（禁用）。
-- ** maxScriptExecutionTime **：允许脚本运行的最长时间。默认情况下* -1 *（禁用）。
-- ** maxMemoryUsed **：允许脚本使用的最大内存（以字节为单位）。请注意，脚本引擎本身也会占用一定量的内存。默认情况下* -1 *（禁用）。
-- ** nrOfInstructionsBeforeStateCheckCallback **：最大脚本执行时间和内存使用量是使用每个x脚本指令调用的回调实现的。请注意，这些不是脚本指令，而是java字节代码指令（这意味着一个脚本行可能是数百个字节代码指令）。默认为100。
+-**enableClassWhiteListing**：当为true时，所有类都将被列入黑名单，并且所有想要使用的类都需要单独列入白名单。这样可以严格控制脚本的内容。默认情况下* false *。
+-**whiteListedClasses**：一组字符串，对应于允许在脚本中使用的类的完全限定类名。例如，要在脚本中公开* execution *对象，需要将* org.activiti.engine.impl.persistence.entity.ExecutionEntityImpl * String添加到此Set中。默认情况下*空*。
+-**maxStackDepth**：在脚本中调用函数时限制堆栈深度。这可用于避免在递归调用脚本中定义的方法时发生的stackoverflow异常。默认情况下* -1 *（禁用）。
+-**maxScriptExecutionTime**：允许脚本运行的最长时间。默认情况下* -1 *（禁用）。
+-**maxMemoryUsed**：允许脚本使用的最大内存（以字节为单位）。请注意，脚本引擎本身也会占用一定量的内存。默认情况下* -1 *（禁用）。
+-**nrOfInstructionsBeforeStateCheckCallback**：最大脚本执行时间和内存使用量是使用每个x脚本指令调用的回调实现的。请注意，这些不是脚本指令，而是java字节代码指令（这意味着一个脚本行可能是数百个字节代码指令）。默认为100。
 
 *注意：* * maxMemoryUsed *设置只能由支持com.sun.management.ThreadMXBean＃getThreadAllocatedBytes（）方法的JVM使用。 Oracle JDK就是这样。
 
@@ -14305,7 +14305,7 @@ service:jmx:rmi:///jndi/rmi://:<hostname>:<registryPort>/<serviceUrlPath>
 
 在开发过程中，有时在实际应用程序中实现它之前，创建一个小测试用例来测试一个想法或一个特性是有帮助的。 这有助于隔离受试者。 JUnit测试用例也是用于传递错误报告和功能请求的首选工具。 将测试用例附加到错误报告或功能请求jira问题上，可以大大缩短其修复时间。
 
-为了便于创建测试用例，可以使用maven原型。 通过使用这种原型，可以快速创建标准测试用例。 原型应该已经在标准存储库中可用。 如果没有，只需在** tooling / archtypes **文件夹中输入** mvn install **，即可轻松将其安装在本地maven存储库文件夹中。
+为了便于创建测试用例，可以使用maven原型。 通过使用这种原型，可以快速创建标准测试用例。 原型应该已经在标准存储库中可用。 如果没有，只需在**tooling / archtypes**文件夹中输入**mvn install**，即可轻松将其安装在本地maven存储库文件夹中。
 
 以下命令创建单元测试项目：
 
@@ -14322,8 +14322,8 @@ mvn archetype:generate \
 
 | Row  | Parameter           | Explanation                                                  |
 | ---- | ------------------- | ------------------------------------------------------------ |
-| 1    | archetypeGroupId    | Group id of the archetype. should be **org.activiti**        |
-| 2    | archetypeArtifactId | Artifact if of the archetype. should be **activiti-archetype-unittest** |
+| 1    | archetypeGroupId    | Group id of the archetype. should be**org.activiti**       |
+| 2    | archetypeArtifactId | Artifact if of the archetype. should be**activiti-archetype-unittest**|
 | 3aa  | archetypeVersion    | Activiti version used in the generated test project          |
 | 4    | groupId             | Group id of the generated test project                       |
 | 5    | artifactId          | Artifact id of the generated test project                    |
@@ -14347,6 +14347,6 @@ mvn archetype:generate \
                     └── my-process.bpmn20.xml
 ```
 
-您可以修改java单元测试用例及其相应的过程模型，或添加新的测试用例和过程模型。 如果您使用该项目来表达错误或功能，则测试用例最初应该失败。 然后应该在修复所需的错误或实现所需的功能后通过。 请确保在发送前输入** mvn clean **来清理项目。
+您可以修改java单元测试用例及其相应的过程模型，或添加新的测试用例和过程模型。 如果您使用该项目来表达错误或功能，则测试用例最初应该失败。 然后应该在修复所需的错误或实现所需的功能后通过。 请确保在发送前输入**mvn clean**来清理项目。
 
 最后更新2017-05-25 10:52:43 EDT
