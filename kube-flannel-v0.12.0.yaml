@@ -185,7 +185,7 @@ spec:
       containers:
       - name: kube-flannel
         image: quay.io/coreos/flannel:v0.12.0-amd64
-		imagePullPolicy: IfNotPresent
+        imagePullPolicy: IfNotPresent
         command:
         - /opt/bin/flanneld
         args:
@@ -375,7 +375,7 @@ spec:
       containers:
       - name: kube-flannel
         image: quay.io/coreos/flannel:v0.12.0-arm
-		imagePullPolicy: IfNotPresent
+        imagePullPolicy: IfNotPresent
         command:
         - /opt/bin/flanneld
         args:
@@ -470,7 +470,7 @@ spec:
       containers:
       - name: kube-flannel
         image: quay.io/coreos/flannel:v0.12.0-ppc64le
-		imagePullPolicy: IfNotPresent
+        imagePullPolicy: IfNotPresent
         command:
         - /opt/bin/flanneld
         args:
@@ -565,7 +565,7 @@ spec:
       containers:
       - name: kube-flannel
         image: quay.io/coreos/flannel:v0.12.0-s390x
-		imagePullPolicy: IfNotPresent
+        imagePullPolicy: IfNotPresent
         command:
         - /opt/bin/flanneld
         args:
